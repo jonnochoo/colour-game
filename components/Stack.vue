@@ -8,7 +8,7 @@
         @drop="drop"
     >
         <li
-            v-for="s in stack.balls"
+            v-for="s in stack.balls.toReversed()"
             :class="s.colour"
             class="rounded-full p-2 mb-2"
             :key="s.id"
