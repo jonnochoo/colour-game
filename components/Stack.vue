@@ -33,8 +33,8 @@ const dragover = (e) => {
 }
 const drop = (e) => {
     emits('change', {
-        from: e.dataTransfer.getData('text'),
-        to: e.target,
+        source: e.dataTransfer.getData('text'),
+        destination: e.target.id,
     })
 }
 </script>

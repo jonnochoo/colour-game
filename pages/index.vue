@@ -13,11 +13,16 @@ onMounted(() => {
     stacks.push(new Stack('2', balls.slice(5, 10)))
     stacks.push(new Stack('3', balls.slice(10, 15)))
     stacks.push(new Stack('4', balls.slice(15, 20)))
+    stacks.push(new Stack('5', []))
 })
 
 const onStackChange = (e) => {
-    const sourceStack = stacks.find((s) => s.id == e.from)
-    sourceStack.pop()
-    console.log(e, sourceStack)
+    const sourceStack = stacks.find((s) => s.id == e.source)
+    const destinationStack = stacks.find((s) => s.id == e.destination)
+    console.log(e, sourceStack, destinationStack)
+    if (sourceStack && destinationStack) {
+        const itemball = sourceStack.pop()
+        destinationStack.push(itemball)
+    }
 }
 </script>
