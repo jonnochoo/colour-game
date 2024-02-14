@@ -10,10 +10,10 @@
         <li
             v-for="s in stack.balls.toReversed()"
             :class="s.colour"
-            class="rounded-full p-2 mb-2"
+            class="rounded-full p-2 mb-2 text-center"
             :key="s.id"
         >
-            {{ s.id }} {{ s.colour }}
+            {{ s.id }}
         </li>
     </ul>
 </template>
