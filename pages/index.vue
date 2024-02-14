@@ -5,7 +5,7 @@
             Score: {{ count }}
         </div>
     </header>
-    <div class="grid grid-cols-5">
+    <div class="grid lg:grid-cols-5">
         <Stack v-for="stack in stacks" :stack="stack" @change="onStackChange" />
     </div>
 </template>

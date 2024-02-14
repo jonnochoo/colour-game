@@ -13,7 +13,7 @@
             class="rounded-full p-2 mb-2 text-center"
             :key="s.id"
         >
-            {{ s.id }}
+            &nbsp;
         </li>
     </ul>
 </template>
