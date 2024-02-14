@@ -6,7 +6,7 @@
             class="rounded-full p-2 mb-2"
             :key="s.id"
         >
-            {{ s.colour }}
+            {{ s.id }} {{ s.colour }}
         </li>
     </ul>
 </template>
