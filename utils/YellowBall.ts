@@ -2,6 +2,6 @@ import { Ball } from './Ball'
 
 export class YellowBall extends Ball {
     constructor() {
-        super('yellow')
+        super('bg-yellow-400')
     }
 }
