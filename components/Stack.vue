@@ -46,10 +46,8 @@ const dragover = (e) => {
     e.preventDefault()
 }
 const drop = (e) => {
-    console.log(e)
     const target =
         e.srcElement.nodeName === 'UL' ? e.target : e.srcElement?.closest('ul')
-    console.log(e.srcElement.nodeName === 'UL', target)
     emits('change', {
         source: e.dataTransfer.getData('text'),
         destination: target.id,
