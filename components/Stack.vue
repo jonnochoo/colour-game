@@ -1,14 +1,14 @@
 <template>
     <ul
         :id="stack.id"
+        class="mr-4 bg-white shadow-sm p-4 hover:cursor-move pt-12"
         draggable="true"
-        class="mr-4 bg-white shadow-sm p-4 hover:cursor-move"
         @dragstart="dragstart"
         @dragover="dragover"
         @drop="drop"
     >
         <li
-            v-for="s in stack.balls.toReversed()"
+            v-for="s in balls"
             :class="s.colour"
             class="rounded-full p-2 mb-2 text-center"
             :key="s.id"
@@ -24,6 +24,19 @@ const emits = defineEmits('change')
 const props = defineProps<{
     stack: Stack
 }>()
+const balls = computed(() => {
+    const newBalls = [
+        new EmptyBall(),
+        new EmptyBall(),
+        new EmptyBall(),
+        new EmptyBall(),
+        new EmptyBall(),
+    ]
+    for (let i = 0; i < props.stack.balls.length; i++) {
+        newBalls[i] = props.stack.balls[i]
+    }
+    return newBalls.toReversed()
+})
 
 const dragstart = (e) => {
     e.dataTransfer.setData('text', e.target.id)
@@ -32,6 +45,7 @@ const dragover = (e) => {
     e.preventDefault()
 }
 const drop = (e) => {
+    console.log(e)
     emits('change', {
         source: e.dataTransfer.getData('text'),
         destination: e.target.id,

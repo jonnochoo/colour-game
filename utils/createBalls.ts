@@ -1,10 +1,10 @@
 export function createBalls() {
     const balls = []
-    balls.push(new RedBall())
-    balls.push(new RedBall())
-    balls.push(new RedBall())
-    balls.push(new RedBall())
-    balls.push(new RedBall())
+    balls.push(new BlueBall())
+    balls.push(new BlueBall())
+    balls.push(new BlueBall())
+    balls.push(new BlueBall())
+    balls.push(new BlueBall())
 
     balls.push(new YellowBall())
     balls.push(new YellowBall())
@@ -18,11 +18,11 @@ export function createBalls() {
     balls.push(new GreenBall())
     balls.push(new GreenBall())
 
-    balls.push(new BlueBall())
-    balls.push(new BlueBall())
-    balls.push(new BlueBall())
-    balls.push(new BlueBall())
-    balls.push(new BlueBall())
+    balls.push(new PurpleBall())
+    balls.push(new PurpleBall())
+    balls.push(new PurpleBall())
+    balls.push(new PurpleBall())
+    balls.push(new PurpleBall())
 
     return balls.sort(() => (Math.random() > 0.5 ? 1 : -1))
 }

@@ -1,7 +1,7 @@
 import { test, expect } from 'vitest'
 import { Stack } from './Stack'
-import { RedBall } from './RedBall'
 import { BlueBall } from './BlueBall'
+import { PurpleBall } from './PurpleBall'
 
 test('empty stack should not be full AND incomplete', () => {
     const sut = new Stack([])
@@ -11,7 +11,7 @@ test('empty stack should not be full AND incomplete', () => {
 })
 
 test('one ball stack should not be full AND incomplete', () => {
-    const sut = new Stack([new RedBall()])
+    const sut = new Stack([new BlueBall()])
 
     expect(sut.isFull()).toBe(false)
     expect(sut.isComplete()).toBe(false)
@@ -19,11 +19,11 @@ test('one ball stack should not be full AND incomplete', () => {
 
 test('five ball stack should be full AND incomplete', () => {
     const sut = new Stack([
+        new PurpleBall(),
         new BlueBall(),
-        new RedBall(),
-        new RedBall(),
-        new RedBall(),
-        new RedBall(),
+        new BlueBall(),
+        new BlueBall(),
+        new BlueBall(),
     ])
 
     expect(sut.isFull()).toBe(true)
@@ -32,11 +32,11 @@ test('five ball stack should be full AND incomplete', () => {
 
 test('five red ball stack should be full AND complete', () => {
     const sut = new Stack([
-        new RedBall(),
-        new RedBall(),
-        new RedBall(),
-        new RedBall(),
-        new RedBall(),
+        new BlueBall(),
+        new BlueBall(),
+        new BlueBall(),
+        new BlueBall(),
+        new BlueBall(),
     ])
 
     expect(sut.isFull()).toBe(true)

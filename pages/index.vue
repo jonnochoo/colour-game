@@ -27,7 +27,7 @@ const onStackChange = (e) => {
     const sourceStack = stacks.find((s) => s.id == e.source)
     const destinationStack = stacks.find((s) => s.id == e.destination)
     console.log(e, sourceStack, destinationStack)
-    if (sourceStack && destinationStack && destinationStack.balls.length < 5) {
+    if (sourceStack && destinationStack && !destinationStack.isFull()) {
         const itemball = sourceStack.pop()
         destinationStack.push(itemball)
         count.value = count.value + 1
