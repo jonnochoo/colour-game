@@ -8,12 +8,17 @@
     <div class="grid lg:grid-cols-5">
         <Stack v-for="stack in stacks" :stack="stack" @change="onStackChange" />
     </div>
+
+    <div class="p-2 text-4xl text-center mt-10" v-if="isGameOver">
+        Well Done!!!
+    </div>
 </template>
 <script setup lang="ts">
 import { createBalls } from '~/utils/createBalls'
 
 const stacks = reactive([] as Stack[])
 const count = ref(0)
+const isGameOver = ref(false)
 onMounted(() => {
     const balls = createBalls()
     stacks.push(new Stack('1', balls.slice(0, 5)))
@@ -31,6 +36,11 @@ const onStackChange = (e) => {
         const itemball = sourceStack.pop()
         destinationStack.push(itemball)
         count.value = count.value + 1
+
+        // Check if the game is finished
+        isGameOver.value = stacks
+            .filter((s) => s.balls.length !== 0)
+            .every((s) => s.isComplete())
     }
 }
 </script>
