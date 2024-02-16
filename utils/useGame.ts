@@ -32,6 +32,11 @@ export function useGame() {
         swap(sourceId: string, destinationId: string) {
             const sourceStack = this.findStack(sourceId)
             const destinationStack = this.findStack(destinationId)
+            if (destinationStack.isFull()) {
+                destinationStack.shake()
+                return
+            }
+
             if (
                 !isGameOver.value &&
                 sourceStack &&
