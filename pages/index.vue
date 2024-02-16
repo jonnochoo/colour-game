@@ -2,13 +2,13 @@
     <header class="flex">
         <h1 class="flex-grow text-4xl font-extrabold mb-2">
             🪣<span
-                class="bg-gradient-to-r from-blue-600 via-pink-500 to-indigo-400 inline-block text-transparent bg-clip-text"
+                class="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-400 inline-block text-transparent bg-clip-text"
                 >Colour Sorter</span
             >
         </h1>
         <div v-if="data.game !== null" class="p-2 mb-2 text-center">
             <button
-                class="rounded-lg text-white p-2 bg-pink-400 hover:bg-pink-500"
+                class="rounded-lg text-white p-2 bg-blue-500 hover:bg-blue-600"
                 @click="createGame"
             >
                 Start A New Game
@@ -20,7 +20,9 @@
         @click="createGame"
         class="h-screen flex items-center justify-center"
     >
-        <button class="rounded-2xl text-white p-10 bg-pink-400 text-5xl mb-10">
+        <button
+            class="rounded-2xl text-white p-10 bg-blue-500 text-5xl mb-10 font-thin"
+        >
             Start Game
         </button>
     </div>
