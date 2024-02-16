@@ -8,6 +8,7 @@
         @drop="drop"
     >
         <li
+            :id="s.id"
             v-for="s in balls"
             :class="s.colour"
             class="rounded-full p-2 mb-2 text-center"
@@ -46,9 +47,12 @@ const dragover = (e) => {
 }
 const drop = (e) => {
     console.log(e)
+    const target =
+        e.srcElement.nodeName === 'UL' ? e.target : e.srcElement?.closest('ul')
+    console.log(e.srcElement.nodeName === 'UL', target)
     emits('change', {
         source: e.dataTransfer.getData('text'),
-        destination: e.target.id,
+        destination: target.id,
     })
 }
 </script>
