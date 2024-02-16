@@ -1,8 +1,11 @@
+import { formatDuration, intervalToDuration } from 'date-fns'
+
 export function useGame() {
     const startDate = new Date()
     const stacks = reactive([] as Stack[])
     const score = ref(0)
     const isGameOver = ref(false)
+    const timer = ref('0 seconds')
 
     const balls = createBalls()
     stacks.push(new Stack('1', balls.slice(0, 5)))
@@ -11,14 +14,30 @@ export function useGame() {
     stacks.push(new Stack('4', balls.slice(15, 20)))
     stacks.push(new Stack('5', []))
 
+    updateTimer()
+    var refreshIntervalId = setInterval(updateTimer, 1000)
+
+    function updateTimer() {
+        timer.value = formatDuration(
+            intervalToDuration({ start: startDate, end: new Date() })
+        )
+    }
+
     return {
         score,
         stacks,
         startDate,
+        timer,
+        isGameOver,
         swap(sourceId: string, destinationId: string) {
             const sourceStack = this.findStack(sourceId)
             const destinationStack = this.findStack(destinationId)
-            if (sourceStack && destinationStack && !destinationStack.isFull()) {
+            if (
+                !isGameOver.value &&
+                sourceStack &&
+                destinationStack &&
+                !destinationStack.isFull()
+            ) {
                 const itemball = sourceStack.pop()
                 destinationStack.push(itemball)
                 score.value = score.value + 1
@@ -27,6 +46,10 @@ export function useGame() {
                 isGameOver.value = stacks
                     .filter((s) => s.balls.length !== 0)
                     .every((s) => s.isComplete())
+
+                if (isGameOver.value) {
+                    clearInterval(refreshIntervalId)
+                }
             }
         },
         findStack(id: string) {

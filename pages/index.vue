@@ -26,8 +26,12 @@
     </div>
     <div v-else>
         <div class="p-2 mb-2 text-center text-gray-800 flex">
-            <div class="text-3xl font-thin">Moves: {{ data.game.score }}</div>
-            <div class="text-3xl font-thin">Clock: {{ data.game.score }}</div>
+            <div class="text-3xl font-thin mr-4">
+                Moves: {{ data.game.score }}
+            </div>
+            <div class="flex-auto text-3xl font-thin text-right">
+                {{ data.game.timer }}
+            </div>
         </div>
         <div class="grid lg:grid-cols-5 mt-10">
             <Stack
@@ -36,9 +40,11 @@
                 @change="onStackChange"
             />
         </div>
-
-        <div class="p-2 text-4xl text-center mt-10" v-if="isGameOver">
-            Well Done!!!
+        <div
+            class="p-2 text-4xl text-center mt-10 font-light"
+            v-if="data.game.isGameOver"
+        >
+            Well done, you win!
         </div>
     </div>
 </template>
