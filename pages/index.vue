@@ -60,6 +60,6 @@ function createGame() {
 }
 
 const onStackChange = (e) => {
-    data.game.swap(e.source, e.destination)
+    data.game.swap(e.sourceId, e.destinationId)
 }
 </script>

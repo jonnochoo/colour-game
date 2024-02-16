@@ -2,6 +2,6 @@ import { Ball } from './Ball'
 
 export class EmptyBall extends Ball {
     constructor() {
-        super('bg-white')
+        super('bg-opacity-0')
     }
 }

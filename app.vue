@@ -3,7 +3,9 @@
         <NuxtPage />
     </div>
 </template>
-
+<script>
+import 'animate.css'
+</script>
 <style>
 body {
     background-color: #efefef;
