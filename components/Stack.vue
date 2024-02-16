@@ -1,7 +1,7 @@
 <template>
     <ul
         :id="stack.id"
-        class="mr-4 bg-white shadow-sm p-4 hover:cursor-move pt-12"
+        class="mr-4 bg-white shadow-md p-4 hover:cursor-move pt-12 rounded-b-3xl"
         draggable="true"
         @dragstart="dragstart"
         @dragover="dragover"
