@@ -8,7 +8,7 @@
         </h1>
         <div v-if="data.game !== null" class="p-2 mb-2 text-center">
             <button
-                class="rounded-lg text-white p-2 bg-blue-500 hover:bg-blue-600"
+                class="rounded-lg text-white p-2 bg-blue-500 hover:bg-blue-500"
                 @click="createGame"
             >
                 Start A New Game
@@ -35,7 +35,7 @@
                 {{ data.game.timer }}
             </div>
         </div>
-        <div class="grid lg:grid-cols-5 mt-10">
+        <div class="grid grid-cols-5 mt-10">
             <Stack
                 v-for="stack in data.game.stacks"
                 :stack="stack"
