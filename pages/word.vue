@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="text-center text-5xl font-thin mt-10">What is the word?</h2>
+        <h2 class="text-center text-5xl font-thin mt-10">Guess the word</h2>
         <div class="flex items-center justify-center mt-10 mb-10 text-5xl">
             {{ wordShown }}
         </div>
@@ -77,11 +77,6 @@ const words = ref([
     'raichu',
     'sandshrew',
     'sandslash',
-    'nidoran♀',
-    'nidorina',
-    'nidoqueen',
-    'nidoran♂',
-    'nidorino',
     'nidoking',
     'clefairy',
     'clefable',
@@ -223,6 +218,7 @@ function onGuessButtonClicked() {
     if (!isCorrect.value) {
         history.value.push(guess.value)
     }
+    guess.value = ''
 }
 
 function randomizeWord(word) {
