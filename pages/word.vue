@@ -249,7 +249,7 @@ const wordList = ref([
         ],
     },
 ])
-const selectedCategory = wordList.value[0].category
+const selectedCategory = ref(wordList.value[0].category)
 const wordActual = ref('')
 const guess = ref('')
 const wordShown = ref('')
@@ -261,7 +261,9 @@ onMounted(() => {
 })
 
 function startGame() {
-    const list = wordList.value.find((x) => x.category === selectedCategory)
+    const list = wordList.value.find(
+        (x) => x.category === selectedCategory.value
+    )
     const words = list.words
     wordActual.value = words[generateRandomNumber(0, words.length)]
     wordShown.value = randomizeWord(wordActual.value)
