@@ -34,8 +34,7 @@
         <div v-if="isCorrect" class="mt-2 text-2xl">
             <div class="flex items-center justify-center">
                 <p>
-                    Yes it was {{ randomNumber }}. You guessed correctly in
-                    {{ history.length + 1 }} attempts
+                    You guessed correctly in {{ history.length + 1 }} attempts
                 </p>
             </div>
             <div class="flex items-center justify-center mt-2">
