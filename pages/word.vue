@@ -1,6 +1,6 @@
 <template>
-    <nav class="bg-[#8B322C] p-6">
-        <h2 class="text-5xl font-thin text-[#FFC470]">🧩Guess the Word</h2>
+    <nav class="bg-[#DD5746] border-b-8 border-[#FFC470] p-6">
+        <h2 class="text-5xl font-thin text-white">🧩Guess the Word</h2>
     </nav>
     <div class="p-4">
         <select
