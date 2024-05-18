@@ -43,16 +43,16 @@
                 </ul>
             </div>
 
-            <div v-if="isCorrect" class="mt-2 text-2xl">
+            <div v-if="isCorrect" class="text-2xl">
                 <div class="flex items-center justify-center">
                     <p>
                         You guessed correctly in
                         {{ history.length + 1 }} attempts
                     </p>
                 </div>
-                <div class="flex items-center justify-center mt-2">
+                <div class="flex items-center justify-center mt-2 mb-4">
                     <button
-                        class="p-2 rounded rounded-sm text-green-200 bg-green-600 text-2xl"
+                        class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
                         @click="startGame()"
                     >
                         New Game
