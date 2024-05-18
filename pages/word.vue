@@ -1,55 +1,63 @@
 <template>
-    <nav class="bg-[#DD5746] border-b-8 border-[#FFC470] p-6">
-        <h2 class="text-5xl font-thin text-white">🧩Guess the Word</h2>
+    <nav class="bg-[#FA7070] border-[#A1C398] p-6">
+        <h2 class="text-5xl font-thin text-white">🧩Unscramble The Word</h2>
     </nav>
-    <div class="p-4">
-        <select
-            class="p-2 w-fu rounded-md"
-            v-model="selectedCategory"
-            @change="startGame"
+    <div class="pt-12">
+        <div
+            class="container mx-auto rounded-3xl bg-[#C6EBC5] p-4 drop-shadow-sm sh"
         >
-            <option v-for="w in wordList">{{ w.category }}</option>
-        </select>
-        <div class="flex items-center justify-center mt-10 mb-10 text-9xl">
-            {{ wordShown }}
-        </div>
-        <div v-if="!isCorrect">
-            <div class="flex items-center justify-center mt-10 mb-10">
-                <input
-                    class="p-2 block mb-2 rounded rounded-md text-5xl text-center font-thin"
-                    v-model="guess"
-                    v-on:keyup.enter="onGuessButtonClicked"
-                />
-            </div>
-            <button
-                class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
-                @click="onGuessButtonClicked"
+            <span class="font-bold mr-4">Category:</span>
+            <select
+                class="p-2 w-fu rounded-md"
+                v-model="selectedCategory"
+                @change="startGame"
             >
-                Guess
-            </button>
-        </div>
-
-        <div class="flex items-center justify-center">
-            <ul class="mt-10">
-                <li v-for="number in history" class="line-through text-5xl">
-                    {{ number }}
-                </li>
-            </ul>
-        </div>
-
-        <div v-if="isCorrect" class="mt-2 text-2xl">
-            <div class="flex items-center justify-center">
-                <p>
-                    You guessed correctly in {{ history.length + 1 }} attempts
-                </p>
+                <option v-for="w in wordList">{{ w.category }}</option>
+            </select>
+            <div
+                class="flex items-center justify-center mt-10 mb-10 text-9xl text-gray-700"
+            >
+                {{ wordShown }}
             </div>
-            <div class="flex items-center justify-center mt-2">
+            <div v-if="!isCorrect">
+                <div class="flex items-center justify-center mt-10 mb-10">
+                    <input
+                        class="p-2 block mb-2 rounded rounded-md text-5xl text-center font-thin"
+                        v-model="guess"
+                        v-on:keyup.enter="onGuessButtonClicked"
+                    />
+                </div>
                 <button
-                    class="p-2 rounded rounded-sm text-green-200 bg-green-600 text-2xl"
-                    @click="startGame()"
+                    class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
+                    @click="onGuessButtonClicked"
                 >
-                    New Game
+                    Guess
                 </button>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <ul class="mt-10">
+                    <li v-for="number in history" class="line-through text-5xl">
+                        {{ number }}
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="isCorrect" class="mt-2 text-2xl">
+                <div class="flex items-center justify-center">
+                    <p>
+                        You guessed correctly in
+                        {{ history.length + 1 }} attempts
+                    </p>
+                </div>
+                <div class="flex items-center justify-center mt-2">
+                    <button
+                        class="p-2 rounded rounded-sm text-green-200 bg-green-600 text-2xl"
+                        @click="startGame()"
+                    >
+                        New Game
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -307,7 +315,7 @@ function randomizeWord(word) {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Freeman');
 body {
-    background-color: #4793af;
+    background-color: #fefded;
 }
 h2 {
     font-family: 'Freeman', 'sans-serif';
