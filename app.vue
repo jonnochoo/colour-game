@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 container m-auto">
+    <div>
         <NuxtPage />
     </div>
 </template>

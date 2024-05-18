@@ -1,10 +1,16 @@
 <template>
-    <div>
-        <h2 class="text-center text-5xl font-thin mt-10">Guess the word</h2>
-        <select class="p-2 w-fu" v-model="selectedCategory" @change="startGame">
+    <nav class="bg-[#8B322C] p-6">
+        <h2 class="text-5xl font-thin text-[#FFC470]">🧩Guess the Word</h2>
+    </nav>
+    <div class="p-4">
+        <select
+            class="p-2 w-fu rounded-md"
+            v-model="selectedCategory"
+            @change="startGame"
+        >
             <option v-for="w in wordList">{{ w.category }}</option>
         </select>
-        <div class="flex items-center justify-center mt-10 mb-10 text-5xl">
+        <div class="flex items-center justify-center mt-10 mb-10 text-9xl">
             {{ wordShown }}
         </div>
         <div v-if="!isCorrect">
@@ -16,7 +22,7 @@
                 />
             </div>
             <button
-                class="p-2 block rounded rounded-sm text-green-200 bg-green-600 w-full text-2xl"
+                class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
                 @click="onGuessButtonClicked"
             >
                 Guess
@@ -297,3 +303,14 @@ function randomizeWord(word) {
     return randomizedWord
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Freeman');
+body {
+    background-color: #4793af;
+}
+h2 {
+    font-family: 'Freeman', 'sans-serif';
+    color: #fde49e;
+}
+</style>
