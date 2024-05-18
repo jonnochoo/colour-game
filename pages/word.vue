@@ -6,6 +6,7 @@
         <div
             class="container mx-auto rounded-3xl bg-[#C6EBC5] p-4 drop-shadow-sm sh"
         >
+            <!-- Nav -->
             <span class="font-bold mr-4">Category:</span>
             <select
                 class="p-2 w-fu rounded-md"
@@ -22,6 +23,7 @@
                     Refresh
                 </button></span
             >
+            <!-- Game Elements -->
             <div
                 class="flex items-center justify-center mt-10 mb-10 text-9xl text-gray-700"
             >
@@ -30,6 +32,7 @@
             <div v-if="!isCorrect">
                 <div class="flex items-center justify-center mt-10 mb-10">
                     <input
+                        autofocus
                         ref="guessInput"
                         class="p-2 block mb-2 rounded rounded-md text-5xl text-center font-thin"
                         v-model="guess"
@@ -75,7 +78,6 @@
 
 <script lang="ts" setup>
 import { categories } from './categories'
-console.log(categories)
 const wordList = ref(categories)
 const selectedCategory = ref(wordList.value[0].category)
 const wordActual = ref('')
@@ -98,15 +100,19 @@ function startGame() {
     wordShown.value = randomizeWord(wordActual.value)
     history.value = []
     isCorrect.value = false
-    guessInput?.value?.focus()
+    nextTick(() => {
+        guessInput?.value?.focus()
+    })
 }
 
 function onGuessButtonClicked() {
-    isCorrect.value = wordActual.value === guess.value
-    if (!isCorrect.value) {
-        history.value.push(guess.value)
+    if (guess.value) {
+        isCorrect.value = wordActual.value === guess.value
+        if (!isCorrect.value) {
+            history.value.push(guess.value)
+        }
+        guess.value = ''
     }
-    guess.value = ''
 }
 
 function randomizeWord(word) {
@@ -123,6 +129,10 @@ function randomizeWord(word) {
 
     // Convert the array back to a string
     var randomizedWord = wordArray.join('')
+
+    if (randomizedWord === word) {
+        return randomizeWord(word)
+    }
 
     return randomizedWord
 }
