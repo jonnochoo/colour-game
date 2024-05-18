@@ -14,6 +14,14 @@
             >
                 <option v-for="w in wordList">{{ w.category }}</option>
             </select>
+            <span
+                ><button
+                    @click="startGame"
+                    class="ml-2 hover:pointer underline"
+                >
+                    Refresh
+                </button></span
+            >
             <div
                 class="flex items-center justify-center mt-10 mb-10 text-9xl text-gray-700"
             >
@@ -22,6 +30,7 @@
             <div v-if="!isCorrect">
                 <div class="flex items-center justify-center mt-10 mb-10">
                     <input
+                        ref="guessInput"
                         class="p-2 block mb-2 rounded rounded-md text-5xl text-center font-thin"
                         v-model="guess"
                         v-on:keyup.enter="onGuessButtonClicked"
@@ -52,6 +61,7 @@
                 </div>
                 <div class="flex items-center justify-center mt-2 mb-4">
                     <button
+                        ref="newGameInput"
                         class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
                         @click="startGame()"
                     >
@@ -269,6 +279,7 @@ const guess = ref('')
 const wordShown = ref('')
 const isCorrect = ref(false)
 const history = ref([])
+const guessInput = ref(null)
 
 onMounted(() => {
     startGame()
@@ -283,6 +294,7 @@ function startGame() {
     wordShown.value = randomizeWord(wordActual.value)
     history.value = []
     isCorrect.value = false
+    guessInput?.value?.focus()
 }
 
 function onGuessButtonClicked() {
