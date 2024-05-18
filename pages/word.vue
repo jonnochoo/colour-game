@@ -130,10 +130,6 @@ function randomizeWord(word) {
     // Convert the array back to a string
     var randomizedWord = wordArray.join('')
 
-    if (randomizedWord === word) {
-        return randomizeWord(word)
-    }
-
     return randomizedWord
 }
 </script>
