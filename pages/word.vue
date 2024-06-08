@@ -1,7 +1,4 @@
 <template>
-    <nav class="bg-[#FA7070] border-[#A1C398] p-6">
-        <h2 class="text-5xl font-thin text-white">🧩Unscramble The Word</h2>
-    </nav>
     <div class="pt-12">
         <div
             class="container mx-auto rounded-3xl bg-[#C6EBC5] p-4 drop-shadow-sm sh"
@@ -135,7 +132,7 @@ function randomizeWord(word) {
 }
 </script>
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css?family=Freeman');
 body {
     background-color: #fefded;

@@ -1,11 +1,5 @@
 <template>
     <header class="flex">
-        <h1 class="flex-grow text-4xl font-extrabold mb-2">
-            🪣<span
-                class="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-400 inline-block text-transparent bg-clip-text"
-                >Colour Sorter</span
-            >
-        </h1>
         <div v-if="data.game !== null" class="p-2 mb-2 text-center">
             <button
                 class="rounded-lg text-white p-2 bg-blue-500 hover:bg-blue-500"
