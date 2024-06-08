@@ -1,18 +1,12 @@
 <template>
-    <header class="p-4 pl-8 text-slate-800 bg-[#E0CA3C] text-5xl">
-        🕹️Games
-    </header>
-
     <section class="menu text-white container mx-auto p-8 text-4xl mt-8">
         <div class="flex flex-col gap-4">
             <GameLink name="Colour Sorter" path="/sorter" />
-            <!-- <GameLink name="Word Scrambler" path="/word" /> -->
+            <GameLink name="Word Scrambler" path="/word" />
         </div>
     </section>
 </template>
-<script setup lang="ts">
-import GameLink from './GameLink.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style>
 body {
