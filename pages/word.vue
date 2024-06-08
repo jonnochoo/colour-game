@@ -47,6 +47,7 @@
                 </button>
             </div>
 
+            <!-- History -->
             <div class="flex items-center justify-center">
                 <ul class="mt-10">
                     <li v-for="number in history" class="line-through text-5xl">

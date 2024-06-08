@@ -6,13 +6,10 @@
 
 <script>
 import 'animate.css'
-useHead({
-    title: 'Colour Sorter',
-})
 </script>
 
 <style>
 body {
-    background-color: #efefef;
+    background-color: #3e2f5b;
 }
 </style>
