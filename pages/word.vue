@@ -1,7 +1,7 @@
 <template>
-    <div class="pt-12">
+    <div>
         <div
-            class="container mx-auto rounded-3xl bg-[#C6EBC5] p-4 drop-shadow-sm sh"
+            class="container mx-auto rounded-lg bg-slate-200 p-4 drop-shadow-sm sh"
         >
             <!-- Nav -->
             <span class="font-bold mr-4">Category:</span>
@@ -37,7 +37,7 @@
                     />
                 </div>
                 <button
-                    class="p-2 block rounded-md text-white bg-[#DD5746] text-2xl border-b-4 border-[#FFC470] mx-auto"
+                    class="p-2 block rounded-md text-white bg-[#F34213] text-2xl border-b-4 border-[#E0CA3C] mx-auto"
                     @click="onGuessButtonClicked"
                 >
                     Guess
@@ -134,12 +134,13 @@ function randomizeWord(word) {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Freeman');
-body {
-    background-color: #fefded;
-}
 h2 {
     font-family: 'Freeman', 'sans-serif';
     color: #fde49e;
+}
+button {
+    font-family: 'Fredoka One', 'sans-serif';
+    font-weight: 100;
 }
 </style>
 ./categories

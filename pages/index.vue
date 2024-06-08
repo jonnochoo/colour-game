@@ -1,6 +1,6 @@
 <template>
-    <section class="menu text-white container mx-auto p-8 text-4xl mt-8">
-        <div class="flex flex-col gap-4">
+    <section class="menu text-white container mx-auto p-8 text-4xl">
+        <div class="flex flex-col gap-6">
             <GameLink name="Colour Sorter" path="/sorter" />
             <GameLink name="Word Scrambler" path="/word" />
         </div>
@@ -17,7 +17,7 @@
 <style scoped>
 .menu {
     font-family: 'Fira Code', monospace;
-    font-weight: 100;
+    font-weight: bold;
 }
 .menu li {
     padding-top: 10px;

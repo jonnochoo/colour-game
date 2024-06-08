@@ -21,7 +21,7 @@
         </button>
     </div>
     <div v-else>
-        <div class="p-2 mb-2 text-center text-gray-800 flex">
+        <div class="p-2 mb-2 text-center text-white flex">
             <div class="text-3xl font-thin mr-4">
                 Moves: {{ data.game.score }}
             </div>
