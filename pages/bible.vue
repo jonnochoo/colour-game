@@ -3,12 +3,12 @@
     <error v-else-if="error" />
     <div v-else>
         <section
-            class="mx-auto container mt-10 bg-[#241b2f] p-8 text-2xl rounded-2xl w-1/3"
+            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 text-2xl lg:m-4 lg:mt-10 lg:w-1/3"
         >
             <p
                 v-if="data.passages.length >= 1"
                 class="mb-3"
-                :class="{ 'font-bold text-4xl mb-6': index == 0 }"
+                :class="{ 'mb-6 text-4xl font-bold': index == 0 }"
                 v-for="(passage, index) in data.passages[0]?.split('\n\n')"
             >
                 {{ passage }}
@@ -22,7 +22,7 @@
     <!-- Modal -->
     <dialog
         ref="passageDialog"
-        class="backdrop:bg-black backdrop:backdrop-blur-[3px] backdrop:bg-opacity-50 rounded-lg"
+        class="rounded-lg backdrop:bg-black backdrop:bg-opacity-50 backdrop:backdrop-blur-[3px]"
     >
         <div class="bg-white p-4">
             <form method="dialog" @submit="onSubmit">
@@ -31,7 +31,7 @@
                     type="text"
                     autofocus
                     placeholder="Enter a bible verse"
-                    class="p-2 text-gray-800 outline-none text-2xl"
+                    class="p-2 text-2xl text-gray-800 outline-none"
                 />
             </form>
         </div>
