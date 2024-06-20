@@ -11,6 +11,10 @@ export default defineNuxtConfig({
             Roboto: true,
             'Fredoka One': true,
             'Fira Code': true,
+            'Source Serif 4': true,
         },
+    },
+    runtimeConfig: {
+        apiSecret: '',
     },
 })
