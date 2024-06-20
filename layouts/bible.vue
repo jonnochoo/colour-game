@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 body {
     background-color: #282a36;
     font-family: 'Source Serif 4', 'sans-serif';
