@@ -3,7 +3,7 @@
     <error v-else-if="error" />
     <div v-else>
         <section
-            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 text-2xl lg:m-4 lg:mt-10 lg:w-1/3"
+            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 text-2xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
         >
             <p
                 v-if="data.passages.length >= 1"
