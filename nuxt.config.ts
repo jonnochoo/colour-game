@@ -12,6 +12,7 @@ export default defineNuxtConfig({
             'Fredoka One': true,
             'Fira Code': true,
             'Source Serif 4': true,
+            'Noto Sans': true,
         },
     },
     runtimeConfig: {
