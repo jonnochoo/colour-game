@@ -16,12 +16,12 @@
     <!-- Modal -->
     <dialog
         ref="passageDialog"
-        class="fixed inset-0 bg-black backdrop-blur-[3px] bg-opacity-50 flex items-center justify-center backdrop:bg-slate-600"
+        class="backdrop:bg-black backdrop:backdrop-blur-[3px] backdrop:bg-opacity-50 rounded-lg"
     >
-        <div class="bg-white rounded-lg shadow-lg p-8">
-            <form method="dialog" onsubmit="update">
+        <div class="bg-white">
+            <form method="dialog" @submit="onSubmit">
                 <input
-                    v-model="searchPassage"
+                    v-model="passageToInput"
                     type="text"
                     autofocus
                     placeholder="Enter a bible verse"
@@ -37,20 +37,22 @@ definePageMeta({
     layout: 'bible',
 })
 
-const passageDialog = ref(null)
+const passageDialog = ref<HTMLDialogElement>()
 
-const searchPassage = ref('Matthew 11:15-27')
-const { data, error, refresh } = await useFetch(
-    `/api/verse?passage=${searchPassage.value}`
-)
+const passageToInput = ref('')
+const passageToSearch = ref('Matthew 11:15-20')
+const { data, error, refresh } = await useFetch(`/api/verse`, {
+    query: { passage: passageToSearch },
+})
 
 const openModal = () => {
-    searchPassage.value = ''
-    passageDialog.showModal()
+    passageToInput.value = ''
+    passageDialog?.value?.showModal()
 }
-const update = async () => {
-    console.log('search', searchPassage.value)
-    // await refresh()
+const onSubmit = async () => {
+    console.log('search', passageToInput.value)
+    passageToSearch.value = passageToInput.value
+    await refresh()
 }
 useKeypress({
     keyEvent: 'keydown',
