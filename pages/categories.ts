@@ -197,7 +197,7 @@ export const categories = [
         ],
     },
     {
-        category: 'animals',
+        category: 'Animals',
         words: [
             'alligator',
             'armadillo',
