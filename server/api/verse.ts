@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { removeUnnecessaryNewLine } from '../../utils/text/bible'
 
 export default defineEventHandler(async (event) => {
     assertMethod(event, 'GET')
@@ -13,5 +14,17 @@ export default defineEventHandler(async (event) => {
     return {
         ...result.data,
         query,
+        passageChunks: parseText(
+            result.data.passages
+                ? removeUnnecessaryNewLine(result.data.passages[0])
+                : ''
+        ),
     }
 })
+
+export function parseText(inputText: string) {
+    const regex = /(\[\d+\])/
+    const result = inputText.split(regex)
+    const filteredResult = result.filter((item: string) => item !== '')
+    return filteredResult
+}

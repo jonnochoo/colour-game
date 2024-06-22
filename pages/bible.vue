@@ -5,14 +5,17 @@
         <section
             class="container mx-auto rounded-2xl bg-[#241b2f] p-8 text-2xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
         >
-            <p
+            <span
                 v-if="data.passages.length >= 1"
-                class="mb-3"
-                :class="{ 'mb-6 text-4xl font-bold': index == 0 }"
-                v-for="(passage, index) in data.passages[0]?.split('\n\n')"
+                class="font-s mb-3 whitespace-pre-line"
+                :class="{
+                    'mb-6 text-4xl font-bold': index == 0,
+                    'align-text-top text-sm': passage.includes('['),
+                }"
+                v-for="(passage, index) in data.passageChunks"
             >
                 {{ passage }}
-            </p>
+            </span>
             <p v-else>
                 Sorry we couldn't find a passage '{{ passageToSearch }}'
             </p>
