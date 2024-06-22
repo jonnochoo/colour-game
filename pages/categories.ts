@@ -202,7 +202,6 @@ export const categories = [
             'alligator',
             'armadillo',
             'barracuda',
-            'butterfly ',
             'butterfly',
             'caterpillar ',
             'cheetah',
