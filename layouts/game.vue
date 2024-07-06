@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 body {
     background-color: #3e2f5b;
 }

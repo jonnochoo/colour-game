@@ -22,6 +22,8 @@
         </section>
     </div>
 
+    <button class="rounded-full bg-orange-500 fixed right-0 bottom-0 p-2 m-3 w-12 h-12" @click="openModal">+</button>
+
     <!-- Modal -->
     <dialog
         ref="passageDialog"
