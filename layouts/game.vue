@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header class="p-4 pl-8 text-slate-800 bg-[#E0CA3C] text-5xl">
+        <header class="font-['Fredoka_One'] p-4 pl-8 text-slate-800 bg-[#E0CA3C] text-5xl">
             <NuxtLink to="/">🕹️Choo Games</NuxtLink>
         </header>
         <section class="container mx-auto pt-12">
