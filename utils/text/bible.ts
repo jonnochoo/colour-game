@@ -22,12 +22,19 @@ export function splitPassageAndFootNote(text: string): passage | null {
     const footNotes = result[1]
     return {
         content: parsePassageIntoVerses(passageText),
-        footnotes: [footNotes],
+        footnotes: parseFootnoteIntoArray(footNotes),
     }
 }
 
 export function parsePassageIntoVerses(inputText: string): string[] {
     const regex = /(\[\d+\])/
+    const result = inputText.split(regex)
+    const filteredResult = result.filter((item: string) => item !== '')
+    return filteredResult
+}
+
+export function parseFootnoteIntoArray(inputText: string): string[] {
+    const regex = /\(\d+\)/
     const result = inputText.split(regex)
     const filteredResult = result.filter((item: string) => item !== '')
     return filteredResult

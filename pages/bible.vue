@@ -16,14 +16,14 @@
             >
                 {{ passage }}
             </span>
-            <h2 class="my-3 font-bold text-gray-500">Footnotes</h2>
-            <span
+            <h2 class="mb-3 mt-6 font-bold text-gray-500">Footnotes</h2>
+            <div
                 v-if="data.passages.length >= 1"
-                class="mb-3 whitespace-pre-line text-sm text-gray-500"
+                class="mb-3 text-sm text-gray-500"
                 v-for="(passage, index) in data?.passageChunksv2?.footnotes"
             >
-                {{ passage }}
-            </span>
+                ({{ index + 1 }}) {{ passage }}
+            </div>
             <p v-else>
                 Sorry we couldn't find a passage '{{ passageToSearch }}'
             </p>
