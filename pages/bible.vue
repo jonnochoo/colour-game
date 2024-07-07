@@ -3,7 +3,7 @@
     <error v-else-if="error" />
     <div v-else>
         <section
-            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 text-2xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
+            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] text-2xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
         >
             <span
                 v-if="data.passages.length >= 1"
@@ -12,7 +12,15 @@
                     'mb-6 text-4xl font-bold': index == 0,
                     'align-text-top text-sm': passage.includes('['),
                 }"
-                v-for="(passage, index) in data.passageChunks"
+                v-for="(passage, index) in data?.passageChunksv2.content"
+            >
+                {{ passage }}
+            </span>
+            <h2 class="my-3 font-bold text-gray-500">Footnotes</h2>
+            <span
+                v-if="data.passages.length >= 1"
+                class="mb-3 whitespace-pre-line text-sm text-gray-500"
+                v-for="(passage, index) in data?.passageChunksv2?.footnotes"
             >
                 {{ passage }}
             </span>
@@ -22,7 +30,12 @@
         </section>
     </div>
 
-    <button class="rounded-full bg-orange-500 fixed right-0 bottom-0 p-2 m-3 w-12 h-12" @click="openModal">+</button>
+    <button
+        class="fixed bottom-0 right-0 m-3 h-12 w-12 rounded-full bg-orange-500 p-2"
+        @click="openModal"
+    >
+        +
+    </button>
 
     <!-- Modal -->
     <dialog
@@ -78,8 +91,4 @@ useKeypress({
 })
 </script>
 
-<style>
-body {
-    font-family: 'Noto Sans', 'monospace';
-}
-</style>
+<style></style>

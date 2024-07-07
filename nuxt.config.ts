@@ -25,7 +25,7 @@ export default defineNuxtConfig({
             'Noto Sans': true,
             'Material Icons Outlined': true,
             'Proxima Nova': true,
-            Inter: true,
+            Lexend: true,
         },
     },
     runtimeConfig: {

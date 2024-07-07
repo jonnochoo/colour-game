@@ -1,5 +1,9 @@
 import axios from 'axios'
-import { removeUnnecessaryNewLine } from '../../utils/text/bible'
+import {
+    parsePassageIntoVerses,
+    removeUnnecessaryNewLine,
+    splitPassageAndFootNote,
+} from '../../utils/text/bible'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -33,17 +37,13 @@ export default defineEventHandler(async (event) => {
     const passageResult = schema.parse(result.data)
     return {
         ...passageResult,
-        passageChunks: parseText(
+        passageChunks: parsePassageIntoVerses(
             result.data.passages
                 ? removeUnnecessaryNewLine(passageResult.passages[0])
                 : ''
         ),
+        passageChunksv2: splitPassageAndFootNote(
+            removeUnnecessaryNewLine(passageResult.passages[0])
+        ),
     }
 })
-
-export function parseText(inputText: string) {
-    const regex = /(\[\d+\])/
-    const result = inputText.split(regex)
-    const filteredResult = result.filter((item: string) => item !== '')
-    return filteredResult
-}
