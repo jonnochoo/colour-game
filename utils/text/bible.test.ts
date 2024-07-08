@@ -33,6 +33,7 @@ test('parse splitPassageAndFootNote', () => {
         ' “For God so loved the world,(2) that he gave his only Son, that whoever believes in him should not perish but have eternal life.',
     ])
     expect(actual?.footnotes).toStrictEqual([
-        '(1) 3:15 Some interpreters hold that the quotation ends at verse 15\n\n(2) 3:16 Or *For this is how God loved the world*\n (ESV)',
+        ' 3:15 Some interpreters hold that the quotation ends at verse 15\n\n',
+        ' 3:16 Or *For this is how God loved the world*\n (ESV)',
     ])
 })
