@@ -9,14 +9,19 @@ export function removeUnnecessaryNewLine(inputText: string): string {
 }
 
 type passage = {
+    verse: string
     content: string[]
     footnotes: string[]
 }
 export function splitPassageAndFootNote(text: string): passage | null {
+    const getVerseRegex = /\n\n/
+    const splitForVerse = text.split(getVerseRegex)
+    const verse = splitForVerse[0]
     const regex = /\n\nFootnotes\n\n/
-    const result = text.split(regex)
-    const passageText = result[0]
+    const result = text.replace(verse, '').split(regex)
+    const passageText = result[0].replace('\n\n', '') // Remove first line breaks
     return {
+        verse: verse,
         content: parsePassageIntoVerses(passageText),
         footnotes: result.length == 2 ? parseFootnoteIntoArray(result[1]) : [],
     }

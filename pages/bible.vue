@@ -6,10 +6,12 @@
             class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] text-xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
         >
             <div v-if="data.passages.length >= 1">
+                <h2 class="mb-3 text-4xl font-bold">
+                    {{ data?.passageChunksv2?.verse }}
+                </h2>
                 <span
                     class="mb-3 whitespace-pre-line"
                     :class="{
-                        'mb-6 text-4xl font-bold': index == 0,
                         'align-text-top text-sm': passage.includes('['),
                     }"
                     v-for="(passage, index) in data?.passageChunksv2.content"
@@ -68,7 +70,7 @@ definePageMeta({
 const passageDialog = ref<HTMLDialogElement>()
 
 const passageToInput = ref('')
-const passageToSearch = ref('2 Chronicles 15:7')
+const passageToSearch = ref('Matthew 7:24-25')
 const { data, pending, error, refresh } = await useFetch(`/api/verse`, {
     query: { passage: passageToSearch },
 })
@@ -78,7 +80,6 @@ const openModal = () => {
     passageDialog?.value?.showModal()
 }
 const onSubmit = async () => {
-    console.log('search', passageToInput.value)
     passageToSearch.value = passageToInput.value
     await refresh()
 }

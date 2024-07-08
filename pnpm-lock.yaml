@@ -23,6 +23,9 @@ dependencies:
   nuxt:
     specifier: ^3.10.1
     version: 3.10.1(vite@5.1.1)
+  nuxt-monaco-editor:
+    specifier: ^1.2.9
+    version: 1.2.9(monaco-editor@0.50.0)(vite@5.1.1)
   tailwindcss:
     specifier: ^3.4.4
     version: 3.4.4
@@ -4533,6 +4536,10 @@ packages:
       ufo: 1.5.3
     dev: false
 
+  /monaco-editor@0.50.0:
+    resolution: {integrity: sha512-8CclLCmrRRh+sul7C08BmPBP3P8wVWfBHomsTcndxg5NRCEPfu/mc2AGU8k37ajjDVXcXFc12ORAMUkmk+lkFA==}
+    dev: false
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -4849,6 +4856,21 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.3
+    dev: false
+
+  /nuxt-monaco-editor@1.2.9(monaco-editor@0.50.0)(vite@5.1.1):
+    resolution: {integrity: sha512-O51sng1MxDAmmm1drOvlUyu6sMdRQtC7ZeSU/r+Hp8KWDDi0JWblPwMOJ+oxMDBnvWw1mOXEhaUBlLjUTEeU/Q==}
+    peerDependencies:
+      monaco-editor: '*'
+    dependencies:
+      '@nuxt/kit': 3.11.2
+      defu: 6.1.4
+      monaco-editor: 0.50.0
+      vite-plugin-static-copy: 1.0.6(vite@5.1.1)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vite
     dev: false
 
   /nuxt@3.10.1(vite@5.1.1):
@@ -6820,6 +6842,19 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: false
+
+  /vite-plugin-static-copy@1.0.6(vite@5.1.1):
+    resolution: {integrity: sha512-3uSvsMwDVFZRitqoWHj0t4137Kz7UynnJeq1EZlRW7e25h2068fyIZX4ORCCOAkfp1FklGxJNVJBkBOD+PZIew==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      vite: ^5.0.0
+    dependencies:
+      chokidar: 3.6.0
+      fast-glob: 3.3.2
+      fs-extra: 11.2.0
+      picocolors: 1.0.0
+      vite: 5.1.1
     dev: false
 
   /vite-plugin-vue-inspector@4.0.2(vite@5.1.1):

@@ -34,6 +34,7 @@ export default defineEventHandler(async (event) => {
         `https://api.esv.org/v3/passage/text/?q=${passageSearch}`,
         { headers: { Authorization: `Token ${apiSecret}` } }
     )
+
     const passageResult = schema.parse(result.data)
     return {
         ...passageResult,
