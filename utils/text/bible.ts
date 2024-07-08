@@ -15,14 +15,10 @@ type passage = {
 export function splitPassageAndFootNote(text: string): passage | null {
     const regex = /\n\nFootnotes\n\n/
     const result = text.split(regex)
-    if (result.length != 2) {
-        return null
-    }
     const passageText = result[0]
-    const footNotes = result[1]
     return {
         content: parsePassageIntoVerses(passageText),
-        footnotes: parseFootnoteIntoArray(footNotes),
+        footnotes: result.length == 2 ? parseFootnoteIntoArray(result[1]) : [],
     }
 }
 
