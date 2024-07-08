@@ -3,11 +3,11 @@
     <error v-else-if="error" />
     <div v-else>
         <section
-            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] text-2xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
+            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] text-xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
         >
             <span
                 v-if="data.passages.length >= 1"
-                class="font-s mb-3 whitespace-pre-line"
+                class="mb-3 whitespace-pre-line"
                 :class="{
                     'mb-6 text-4xl font-bold': index == 0,
                     'align-text-top text-sm': passage.includes('['),

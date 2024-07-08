@@ -11,8 +11,8 @@ export default defineNuxtConfig({
     ],
     tailwindcss: {
         config: {
-            plugins: [tailwindTypography]
-        }
+            plugins: [tailwindTypography],
+        },
     },
     googleFonts: {
         prefetch: true,
@@ -21,10 +21,6 @@ export default defineNuxtConfig({
             Roboto: true,
             'Fredoka One': true,
             'Fira Code': true,
-            'Source Serif 4': true,
-            'Noto Sans': true,
-            'Material Icons Outlined': true,
-            'Proxima Nova': true,
             Lexend: true,
         },
     },
