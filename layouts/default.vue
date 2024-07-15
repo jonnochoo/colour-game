@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full">
         <section class="container mx-auto pt-12">
             <slot />
         </section>

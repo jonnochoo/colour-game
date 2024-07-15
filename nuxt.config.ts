@@ -23,6 +23,8 @@ export default defineNuxtConfig({
             'Fredoka One': true,
             'Fira Code': true,
             Lexend: true,
+            'IBM Plex Sans Condensed': true,
+            'IBM Plex Sans': true,
         },
     },
     runtimeConfig: {
