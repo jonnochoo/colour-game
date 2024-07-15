@@ -29,5 +29,6 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         apiSecret: '',
+        weatherApiKey: '',
     },
 })
