@@ -1,6 +1,6 @@
 <template>
     <h1 class="font-[lexend] text-5xl text-white">🏏 Choo Family Dashboard</h1>
-    <div class="mt-8 grid grid-cols-3 gap-6">
+    <div class="mt-8 grid gap-6 lg:grid-cols-3">
         <BibleDashGrid />
         <ClockDashGrid />
         <WeatherDashGrid />

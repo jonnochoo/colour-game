@@ -1,12 +1,12 @@
 <template>
     <RouterLink
-    :to="to"
-        class="font-grid bottom-0 rounded-md border-0 border-t-8 bg-white border-[#ffb7c4] p-4 text-center text-2xl"
+        :to="to"
+        class="rounded-2xl bg-gradient-to-b from-[#3e2f5b] to-[#3e2f5b] p-8 font-[lexend] text-2xl text-white"
     >
         {{ props.text }}
     </RouterLink>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ text: string, to: string }>()
+const props = defineProps<{ text: string; to: string }>()
 </script>
