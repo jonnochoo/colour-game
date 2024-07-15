@@ -1,5 +1,12 @@
 <template>
-    <div class="rounded-2xl bg-[#3e2f5b] p-8 font-[ibm_plex_sans] text-white">
+    <div
+        class="rounded-2xl bg-[#3e2f5b] p-8 font-[ibm_plex_sans] text-white"
+        :class="props.class"
+    >
         <slot />
     </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps<{ class?: string }>()
+</script>
