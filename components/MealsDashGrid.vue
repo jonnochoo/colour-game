@@ -4,12 +4,10 @@
         <ul class="text-4xl">
             <li
                 class="mb-4 border-l-4 border-green-500 pl-4"
-                v-for="meal in meals"
+                v-for="meal in data.meals"
                 :class="{ 'line-through': meal.isCompleted }"
             >
-                <span clas="font-bold"
-                    >{{ meal.dayOfWeek.substring(0, 3) }}:
-                </span>
+                <span clas="font-bold">{{ meal.dayOfWeek }}: </span>
                 {{ meal.name }}
             </li>
         </ul>
@@ -17,6 +15,7 @@
 </template>
 
 <script lang="ts" setup>
+const { data, error } = await useFetch(`/api/trello`)
 type meal = {
     name: string
     dayOfWeek: string

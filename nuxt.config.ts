@@ -30,5 +30,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         apiSecret: '',
         weatherApiKey: '',
+        trelloApiKey: '',
+        trelloToken: '',
     },
 })
