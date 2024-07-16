@@ -1,7 +1,7 @@
 <template>
     <DashGrid>
-        <p class="mb-4 text-2xl font-bold text-[#fceb3c]">Goals</p>
-        <ul class="text-2xl">
+        <p class="mb-4 text-4xl font-bold text-[#fceb3c]">Goals</p>
+        <ul class="text-3xl">
             <li
                 class="mb-2 ml-6 list-disc"
                 v-for="goal in goals"

@@ -1,6 +1,6 @@
 <template>
     <DashGrid class="lg:col-span-3">
-        <p v-if="error" class="border-l-4 border-[#ffd38f] pl-4 text-2xl">
+        <p v-if="error" class="border-l-4 border-[#ffd38f] pl-4 text-4xl">
             Therefore, get rid of all moral filth and the evil that is so
             prevalent and humbly accept the word planted in you, which can save
             you.
