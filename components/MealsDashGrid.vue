@@ -22,12 +22,12 @@ type meal = {
     dayOfWeek: string
 }
 const meals = ref<meal[]>([
-    { name: 'Steamed Basa', dayOfWeek: 'Tuesday' },
     { name: 'Sushi', dayOfWeek: 'Wednesday' },
     { name: 'Japanese Curry', dayOfWeek: 'Thursday' },
     { name: 'Corn Soup', dayOfWeek: 'Friday' },
     { name: 'Karage Chicken', dayOfWeek: 'Saturday' },
     { name: 'Chicken Schnitzel', dayOfWeek: 'Sunday' },
     { name: 'Soup Noodles', dayOfWeek: 'Monday' },
+    // { name: '', dayOfWeek: 'Tuesday' },
 ])
 </script>
