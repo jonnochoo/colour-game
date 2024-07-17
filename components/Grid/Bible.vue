@@ -9,7 +9,7 @@
             every power and authority.
             <span class="mt-4 block font-bold">Colossians 2:9-10</span>
         </p>
-        <p v-else class="border-l-4 border-[#ffd38f] pl-4 text-2xl">
+        <p v-else class="border-l-4 border-[#ffd38f] pl-4 text-2xl lg:text-4xl">
             {{ data.text }}
             <span class="mt-4 block font-bold">{{ data.verse }}</span>
         </p>
