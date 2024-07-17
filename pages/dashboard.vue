@@ -10,6 +10,8 @@
         <MealsDashGrid />
         <EventsDashGrid />
         <GoalsDashGrid />
+        <GridElijah />
+        <GridAbigail />
     </div>
 </template>
 
