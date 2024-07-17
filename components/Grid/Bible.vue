@@ -18,6 +18,6 @@
 
 <script lang="ts" setup>
 const { data, pending, error, refresh } = await useFetch(
-    `http://192.168.86.32:5230/bible`
+    `http://localhost:5230/bible`
 )
 </script>
