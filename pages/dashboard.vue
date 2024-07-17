@@ -3,13 +3,13 @@
         🏏 The Choo Family Dashboard
     </h1>
     <div class="mt-8 grid gap-6 lg:grid-cols-3">
-        <BibleDashGrid />
-        <ClockDashGrid />
-        <WeatherDashGrid />
-        <NextMealDashGrid />
-        <MealsDashGrid />
-        <EventsDashGrid />
-        <GoalsDashGrid />
+        <GridBible />
+        <GridClock />
+        <GridWeather />
+        <GridNextMeal />
+        <GridMeals />
+        <GridEvents />
+        <GridGoals />
         <GridElijah />
         <GridAbigail />
     </div>
