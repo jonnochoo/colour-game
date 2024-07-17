@@ -6,6 +6,7 @@ type Card = {
     name: string
     dayOfWeek: string
     dayOfWeekNumber: number
+    sortIndex: number
 }
 export default defineEventHandler(async (event) => {
     assertMethod(event, 'GET')
@@ -28,17 +29,29 @@ export default defineEventHandler(async (event) => {
             }
             const dayOfWeek = splitText[0].trim()
             const name = toTitleCase(splitText[1].trim())
+            const dayOfWeekNumber = parseDayToEnum(dayOfWeek)
             return {
                 name: name,
                 dayOfWeek: dayOfWeek,
-                dayOfWeekNumber: parseDayToEnum(dayOfWeek),
+                dayOfWeekNumber: dayOfWeekNumber,
+                sortIndex: getSortOfWeekNumber(dayOfWeekNumber),
             }
         })
         .filter((x: Card) => x.dayOfWeekNumber >= 0 && x.name !== '')
+        .toSorted((a: Card, b: Card) => a.sortIndex - b.sortIndex)
     return {
         meals,
     }
 })
+
+function getSortOfWeekNumber(dayOfWeekNumber: number) {
+    const currentDateNumber = new Date().getDay()
+    if (dayOfWeekNumber >= currentDateNumber) {
+        return dayOfWeekNumber - currentDateNumber
+    }
+
+    return dayOfWeekNumber + currentDateNumber
+}
 
 function toTitleCase(str: string) {
     return str
