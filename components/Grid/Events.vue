@@ -18,7 +18,8 @@ type $event = {
     date: string
 }
 const events = ref<$event[]>([
-    { name: 'Physio', date: '8:30am Wed 16th' },
-    { name: 'Dr Chapman - Telehealth', date: '11:30am Wed 16th' },
+    { name: 'Mission Team Meeting', date: '10am Sat 20th' },
+    { name: 'Cambodia Info Session', date: '11am Sun 21st' },
+    { name: 'Roy Kim Party (Abi)', date: '1:45pm Sun 28th' },
 ])
 </script>
