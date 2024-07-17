@@ -21,4 +21,7 @@ definePageMeta({
 .menu li {
     padding-top: 10px;
 }
+body {
+    background-color: #1b1428;
+}
 </style>
