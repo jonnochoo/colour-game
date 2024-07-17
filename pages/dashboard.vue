@@ -10,7 +10,7 @@
         <div class="mt-8 grid gap-6 lg:grid-cols-3">
             <GridBible />
             <GridClock />
-            <!-- <GridWeather /> -->
+            <GridWeather />
             <GridNextMeal />
             <GridMeals />
             <GridEvents />
