@@ -22,7 +22,7 @@ dependencies:
     version: 3.3.1
   nuxt:
     specifier: ^3.10.1
-    version: 3.10.1(vite@5.1.1)
+    version: 3.10.1(vite@5.1.1)(xml2js@0.6.2)
   nuxt-monaco-editor:
     specifier: ^1.2.9
     version: 1.2.9(monaco-editor@0.50.0)(vite@5.1.1)
@@ -41,6 +41,9 @@ dependencies:
   vuedraggable:
     specifier: ^4.1.0
     version: 4.1.0(vue@3.4.18)
+  xml2js:
+    specifier: ^0.6.2
+    version: 0.6.2
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -1070,7 +1073,7 @@ packages:
       '@nuxt/kit': 3.10.1
       '@nuxt/schema': 3.10.1
       execa: 7.2.0
-      nuxt: 3.10.1(vite@5.1.1)
+      nuxt: 3.10.1(vite@5.1.1)(xml2js@0.6.2)
       vite: 5.1.1
     transitivePeerDependencies:
       - rollup
@@ -1118,7 +1121,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.1(vite@5.1.1)
+      nuxt: 3.10.1(vite@5.1.1)(xml2js@0.6.2)
       nypm: 0.3.6
       ohash: 1.1.3
       pacote: 17.0.6
@@ -4581,7 +4584,7 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
 
-  /nitropack@2.8.1:
+  /nitropack@2.8.1(xml2js@0.6.2):
     resolution: {integrity: sha512-pODv2kEEzZSDQR+1UMXbGyNgMedUDq/qUomtiAnQKQvLy52VGlecXO1xDfH3i0kP1yKEcKTnWsx1TAF5gHM7xQ==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -4655,6 +4658,7 @@ packages:
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.10.0)
       unstorage: 1.10.1
+      xml2js: 0.6.2
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4873,7 +4877,7 @@ packages:
       - vite
     dev: false
 
-  /nuxt@3.10.1(vite@5.1.1):
+  /nuxt@3.10.1(vite@5.1.1)(xml2js@0.6.2):
     resolution: {integrity: sha512-1X1DFTGPbVQFF1tjOWYl3qYc3zQww8htknu3qiP8xNzY1MFnDT3Xisxcf6KDe375tHHui0UpXflseL6evlEoMQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -4916,7 +4920,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.7
       mlly: 1.5.0
-      nitropack: 2.8.1
+      nitropack: 2.8.1(xml2js@0.6.2)
       nuxi: 3.10.0
       nypm: 0.3.6
       ofetch: 1.3.3
@@ -5943,6 +5947,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+    dev: false
 
   /scule@1.3.0:
     resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
@@ -7208,6 +7216,19 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: false
+
+  /xml2js@0.6.2:
+    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      sax: 1.4.1
+      xmlbuilder: 11.0.1
+    dev: false
+
+  /xmlbuilder@11.0.1:
+    resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
+    engines: {node: '>=4.0'}
     dev: false
 
   /y18n@5.0.8:

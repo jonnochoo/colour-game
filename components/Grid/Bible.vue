@@ -17,7 +17,5 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error, refresh } = await useFetch(
-    `http://localhost:5230/bible`
-)
+const { data, pending, error, refresh } = await useFetch(`/api/bible`)
 </script>
