@@ -1,7 +1,11 @@
 <template>
-    <h1 class="font-[lexend] text-6xl text-white">
-        🏏 The Choo Family Dashboard
-    </h1>
+    <header class="flex items-center">
+        <div>
+            <h1 class="font-[lexend] text-2xl text-white lg:text-6xl">
+                🏏 The Choo Family Dashboard
+            </h1>
+        </div>
+    </header>
     <div class="mt-8 grid gap-6 lg:grid-cols-3">
         <GridBible />
         <GridClock />

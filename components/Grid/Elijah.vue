@@ -1,6 +1,6 @@
 <template>
     <DashGrid>
-        <p class="mb-6 text-4xl font-bold text-[#FFB86C]">Elijah</p>
+        <p class="mb-6 font-bold text-[#FFB86C] lg:text-4xl">Elijah</p>
         <p>
             Cricket is one of the oldest team sports, with its origins dating
             back to the 16th century in England. The first recorded cricket

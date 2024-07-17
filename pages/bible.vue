@@ -3,7 +3,7 @@
     <error v-else-if="error" />
     <div v-else>
         <section
-            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] text-xl lg:mt-10 lg:w-2/3 2xl:w-1/2"
+            class="container mx-auto rounded-2xl bg-[#241b2f] p-8 font-[Lexend] lg:mt-10 lg:w-2/3 lg:text-xl 2xl:w-1/2"
         >
             <div v-if="data.passages.length >= 1">
                 <h2 class="mb-3 text-4xl font-bold">

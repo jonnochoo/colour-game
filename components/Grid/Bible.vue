@@ -1,6 +1,9 @@
 <template>
     <DashGrid class="lg:col-span-3">
-        <p v-if="error" class="border-l-4 border-[#ffd38f] pl-4 text-4xl">
+        <p
+            v-if="error"
+            class="border-l-4 border-[#ffd38f] pl-4 text-2xl lg:text-4xl"
+        >
             For in Christ all the fullness of the Deity lives in bodily form,
             and in Christ you have been brought to fullness. He is the head over
             every power and authority.

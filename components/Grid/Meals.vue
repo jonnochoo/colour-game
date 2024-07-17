@@ -1,7 +1,7 @@
 <template>
     <DashGrid>
         <p class="mb-6 text-4xl font-bold text-[#f87359]">Meals</p>
-        <ul class="text-4xl">
+        <ul class="lg:text-4xl">
             <li
                 class="mb-4 border-l-4 border-green-500 pl-4"
                 v-for="meal in data.meals"
