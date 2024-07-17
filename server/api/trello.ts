@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
             }
         })
         .filter((x: Card) => x.dayOfWeekNumber >= 0 && x.name !== '')
-        .toSorted((a: Card, b: Card) => a.sortIndex - b.sortIndex)
+    // .toSorted((a: Card, b: Card) => a.sortIndex - b.sortIndex)
     return {
         meals,
     }
