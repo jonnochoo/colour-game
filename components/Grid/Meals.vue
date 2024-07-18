@@ -3,21 +3,23 @@
         <div v-if="error">Error</div>
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
-            <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
-            <ul class="lg:text-4xl">
-                <li class="mb-4 flex gap-4" v-for="meal in data.meals">
-                    <span
-                        class="w-20 border-r-4 border-green-400 pr-2 font-bold"
-                        :class="{
-                            'border-red-400':
-                                meal.dayOfWeek === 'Sun' ||
-                                meal.dayOfWeek === 'Sat',
-                        }"
-                        >{{ meal.dayOfWeek }}</span
-                    >
-                    <span> {{ meal.name }}</span>
-                </li>
-            </ul>
+            <ClientOnly>
+                <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
+                <ul class="lg:text-4xl">
+                    <li class="mb-4 flex gap-4" v-for="meal in data.meals">
+                        <span
+                            class="w-20 border-r-4 border-green-400 pr-2 font-bold"
+                            :class="{
+                                'border-red-400':
+                                    meal.dayOfWeek === 'Sun' ||
+                                    meal.dayOfWeek === 'Sat',
+                            }"
+                            >{{ meal.dayOfWeek }}</span
+                        >
+                        <span> {{ meal.name }}</span>
+                    </li>
+                </ul>
+            </ClientOnly>
         </div>
     </DashGrid>
 </template>
