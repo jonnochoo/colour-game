@@ -1,6 +1,6 @@
 <template>
     <DashGrid>
-        <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Events</p>
+        <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
         <ul class="lg:text-3xl">
             <li class="mb-4 flex gap-4" v-for="$event in events">
                 <span class="w-40 border-r-4 border-[#50FA7B] pr-2">{{

@@ -17,6 +17,7 @@
             <GridGoals />
             <GridElijah />
             <GridAbigail />
+            <GridCountry />
         </div>
     </div>
 
