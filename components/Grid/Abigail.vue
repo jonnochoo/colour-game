@@ -1,12 +1,18 @@
 <template>
-    <DashGrid>
-        <p class="mb-6 font-bold text-[#BD93F9] lg:text-4xl">Abigail</p>
-        <p>
-            The Guinness World record for the Most Cartwheels in One Hour was
-            set by Don Claps, 41, from Broomfield, Colorado, who performed 1,293
-            cartwheel
-        </p>
+    <DashGrid @refreshed-click="refresh">
+        <ClientOnly>
+            <div v-if="error">Error</div>
+            <div v-else-if="pending"><GridPending /></div>
+            <div v-else>
+                <p class="mb-6 font-bold text-[#BD93F9] lg:text-4xl">Abigail</p>
+                <p>
+                    {{ data.text }}
+                </p>
+            </div>
+        </ClientOnly>
     </DashGrid>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data, pending, error, refresh } = await useFetch(`/api/abigail`)
+</script>
