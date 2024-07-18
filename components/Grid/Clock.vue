@@ -1,9 +1,11 @@
 <template>
     <DashGrid>
-        <p class="mb-4 text-center font-[lexend] lg:text-8xl">
-            {{ currentTime }}
-        </p>
-        <p class="text-center lg:text-5xl">{{ currentDate }}</p>
+        <ClientOnly>
+            <p class="mb-4 text-center font-[lexend] lg:text-8xl">
+                {{ currentTime }}
+            </p>
+            <p class="text-center lg:text-5xl">{{ currentDate }}</p>
+        </ClientOnly>
     </DashGrid>
 </template>
 
@@ -16,8 +18,8 @@ const setCurrentDateAndTime = () => {
     currentTime.value = format(new Date(), 'h:mm:ss aa')
     currentDate.value = format(new Date(), 'EEEE do MMMM')
 }
-setCurrentDateAndTime()
 onMounted(() => {
+    setCurrentDateAndTime()
     const intervalId = setInterval(setCurrentDateAndTime, 1000)
 })
 </script>
