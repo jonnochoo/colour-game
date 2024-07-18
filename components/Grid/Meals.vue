@@ -2,17 +2,17 @@
     <DashGrid>
         <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
         <ul class="lg:text-4xl">
-            <li class="mb-4 flex" v-for="meal in data.meals">
+            <li class="mb-4 flex gap-4" v-for="meal in data.meals">
                 <span
                     class="w-20 border-r-4 border-green-400 pr-2 font-bold"
                     :class="{
-                        'border-red-500':
+                        'border-red-400':
                             meal.dayOfWeek === 'Sun' ||
                             meal.dayOfWeek === 'Sat',
                     }"
                     >{{ meal.dayOfWeek }}</span
                 >
-                <span class="pl-4"> {{ meal.name }}</span>
+                <span> {{ meal.name }}</span>
             </li>
         </ul>
     </DashGrid>
