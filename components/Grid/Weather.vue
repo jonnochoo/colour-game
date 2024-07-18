@@ -2,11 +2,18 @@
     <DashGrid @refreshed-click="refresh">
         <div v-if="error">Error</div>
         <div v-if="pending">
-            <span class="h-10 bg-gray-300"></span>
+            <GridPending />
         </div>
         <div v-else>
-            <p class="text-9xl">
-                {{ Math.round(data.now.values.temperature) }}°
+            <p class="flex items-center text-9xl">
+                <span v-if="data.now.values.weatherCode === 1000"
+                    ><img
+                        alt="Clear"
+                        src="https://files.readme.io/48b265b-weather_icon_small_ic_clear3x.png"
+                /></span>
+                <span class="ml-4">
+                    {{ Math.round(data.now.values.temperature) }}°
+                </span>
             </p>
             <div class="flex gap-3 text-2xl">
                 <div class="text-[#f87359]">
@@ -27,8 +34,11 @@
 const { data, pending, error, refresh } = await useFetch(`/api/weather`)
 
 onMounted(() => {
-    // setInterval(() => {
-    //     refresh()
-    // }, 10 * 1000)
+    setInterval(
+        () => {
+            refresh()
+        },
+        15 * 1000 * 60
+    )
 })
 </script>
