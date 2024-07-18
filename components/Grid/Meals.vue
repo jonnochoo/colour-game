@@ -1,14 +1,18 @@
 <template>
     <DashGrid>
-        <p class="mb-6 text-4xl font-bold text-[#f87359]">Meals</p>
+        <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
         <ul class="lg:text-4xl">
-            <li
-                class="mb-4 border-l-4 border-green-500 pl-4"
-                v-for="meal in data.meals"
-                :class="{ 'line-through': meal.isCompleted }"
-            >
-                <span clas="font-bold">{{ meal.dayOfWeek }}: </span>
-                {{ meal.name }}
+            <li class="mb-4 flex" v-for="meal in data.meals">
+                <span
+                    class="w-20 border-r-4 border-green-400 pr-2 font-bold"
+                    :class="{
+                        'border-red-500':
+                            meal.dayOfWeek === 'Sun' ||
+                            meal.dayOfWeek === 'Sat',
+                    }"
+                    >{{ meal.dayOfWeek }}</span
+                >
+                <span class="pl-4"> {{ meal.name }}</span>
             </li>
         </ul>
     </DashGrid>
