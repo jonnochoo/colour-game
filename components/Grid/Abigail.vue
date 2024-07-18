@@ -4,7 +4,9 @@
             <div v-if="error">Error</div>
             <div v-else-if="pending"><GridPending /></div>
             <div v-else>
-                <p class="mb-6 font-bold text-[#BD93F9] lg:text-4xl">Abigail</p>
+                <p class="mb-6 font-bold text-violet-500 lg:text-4xl">
+                    Abigail
+                </p>
                 <p>
                     {{ data.text }}
                 </p>
