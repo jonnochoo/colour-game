@@ -11,7 +11,7 @@
             <GridBible />
             <GridClock />
             <GridWeather />
-            <GridNextMeal />
+            <GridNotes />
             <GridMeals />
             <GridEvents />
             <GridGoals />
