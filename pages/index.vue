@@ -1,15 +1,16 @@
 <template>
     <div>
+        <h2>Jonno</h2>
         <section class="grid grid-cols-3 gap-4">
-            <GridBox to="/bible" text="Bible" />
-            <GridBox to="/game" text="Game" />
-            <GridBox to="/dashboard" text="Dashboard" />
+            <GridBox to="/bible" text="📖 Bible" />
+            <GridBox to="/game" text="🎮 Game" />
+            <GridBox to="/dashboard" text="📊 Dashboard" />
         </section>
     </div>
 </template>
 <script setup lang="ts">
 definePageMeta({
-    layout: 'dashboard',
+    layout: 'default',
 })
 </script>
 
@@ -22,6 +23,6 @@ definePageMeta({
     padding-top: 10px;
 }
 body {
-    background-color: #1b1428;
+    background-color: red;
 }
 </style>

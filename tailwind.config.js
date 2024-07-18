@@ -7,6 +7,9 @@ module.exports = {
             fontFamily: {
                 grid: ['Fredoka One', 'sans-serif'],
             },
+            colors: {
+                background: '#1b1428',
+            },
         },
     },
     plugins: [],

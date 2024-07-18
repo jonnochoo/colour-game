@@ -3,7 +3,7 @@
         <p class="mb-4 text-center font-[lexend] lg:text-8xl">
             {{ currentTime }}
         </p>
-        <p class="text-center lg:text-3xl">{{ currentDate }}</p>
+        <p class="text-center lg:text-5xl">{{ currentDate }}</p>
     </DashGrid>
 </template>
 

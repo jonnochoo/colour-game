@@ -64,7 +64,7 @@ definePageMeta({
     layout: 'dashboard',
 })
 </script>
-<style>
+<style scoped>
 body {
     background-color: #1b1428;
 }
