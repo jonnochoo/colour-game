@@ -32,5 +32,7 @@ export default defineNuxtConfig({
         weatherApiKey: '',
         trelloApiKey: '',
         trelloToken: '',
+        googleCalendarServiceAccountEmail: '',
+        googleCalendarPrivateKey: '',
     },
 })

@@ -1,25 +1,34 @@
 <template>
-    <DashGrid>
-        <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
-        <ul class="lg:text-3xl">
-            <li class="mb-4 flex gap-4" v-for="$event in events">
-                <span class="w-40 border-r-4 border-[#50FA7B] pr-2">{{
-                    $event.date
-                }}</span>
-                <span>{{ $event.name }}</span>
-            </li>
-        </ul>
+    <DashGrid @refreshed-click="refresh">
+        <div v-if="error">Error</div>
+        <div v-else-if="pending"><GridPending /></div>
+        <div v-else>
+            <ClientOnly>
+                <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
+                <ul class="lg:text-3xl">
+                    <li
+                        class="mb-4 flex gap-4"
+                        v-for="$event in data.events.items"
+                    >
+                        <span class="w-80 border-r-4 border-[#50FA7B] pr-2">{{
+                            formatDate($event.start)
+                        }}</span>
+                        <span>{{ $event.summary }}</span>
+                    </li>
+                </ul></ClientOnly
+            >
+        </div>
     </DashGrid>
 </template>
 
 <script lang="ts" setup>
-type $event = {
-    name: string
-    date: string
+import { format, parseISO, parse } from 'date-fns'
+const { data, pending, error, refresh } = await useFetch(`/api/calendar`)
+
+const formatDate = (d) => {
+    if (d.date) {
+        return format(parse(d.date, 'yyyy-MM-dd', new Date()), 'EEE, dd MMM')
+    }
+    return format(parseISO(d.dateTime), 'EEE, dd MMM h:mm a')
 }
-const events = ref<$event[]>([
-    { name: 'Mission Team Meeting', date: 'Sat 20th ' },
-    { name: 'Cambodia Info Session', date: 'Sun 21st' },
-    { name: 'Roy Kim Party (Abi)', date: 'Sun 28th' },
-])
 </script>
