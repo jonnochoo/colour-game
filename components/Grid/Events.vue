@@ -8,7 +8,11 @@
                 <ul class="lg:text-3xl">
                     <li
                         class="mb-4 flex gap-4"
-                        v-for="$event in data.events.items"
+                        v-for="$event in data.events.items?.filter(
+                            (x) =>
+                                x.summary !== 'Dupilumab' &&
+                                x.summary !== 'Baz Birthday'
+                        )"
                     >
                         <span class="w-80 border-r-4 border-[#50FA7B] pr-2">{{
                             formatDate($event.start)
