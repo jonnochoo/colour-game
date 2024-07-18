@@ -1,25 +1,29 @@
 <template>
-    <DashGrid>
-        <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
-        <ul class="lg:text-4xl">
-            <li class="mb-4 flex gap-4" v-for="meal in data.meals">
-                <span
-                    class="w-20 border-r-4 border-green-400 pr-2 font-bold"
-                    :class="{
-                        'border-red-400':
-                            meal.dayOfWeek === 'Sun' ||
-                            meal.dayOfWeek === 'Sat',
-                    }"
-                    >{{ meal.dayOfWeek }}</span
-                >
-                <span> {{ meal.name }}</span>
-            </li>
-        </ul>
+    <DashGrid @refreshedClick="refresh">
+        <div v-if="error">Error</div>
+        <div v-else-if="pending"><GridPending /></div>
+        <div v-else>
+            <p class="mb-6 text-4xl font-bold text-[#f87359]">Dinners</p>
+            <ul class="lg:text-4xl">
+                <li class="mb-4 flex gap-4" v-for="meal in data.meals">
+                    <span
+                        class="w-20 border-r-4 border-green-400 pr-2 font-bold"
+                        :class="{
+                            'border-red-400':
+                                meal.dayOfWeek === 'Sun' ||
+                                meal.dayOfWeek === 'Sat',
+                        }"
+                        >{{ meal.dayOfWeek }}</span
+                    >
+                    <span> {{ meal.name }}</span>
+                </li>
+            </ul>
+        </div>
     </DashGrid>
 </template>
 
 <script lang="ts" setup>
-const { data, error } = await useFetch(`/api/trello`)
+const { data, error, refresh, pending } = await useFetch(`/api/trello`)
 type meal = {
     name: string
     dayOfWeek: string
