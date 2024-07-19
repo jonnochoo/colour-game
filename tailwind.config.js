@@ -14,6 +14,7 @@ module.exports = {
                 'my-orange': '#FFB86C',
                 'my-yellow': '#fceb3c',
                 'my-aqua': '#4dceb0',
+                'my-green': '#50FA7B',
             },
         },
     },

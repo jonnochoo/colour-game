@@ -8,11 +8,14 @@
                 <ul class="lg:text-4xl">
                     <li class="mb-4 flex gap-4" v-for="meal in data.meals">
                         <span
-                            class="w-24 border-r-4 border-purple-500 pr-2"
+                            class="w-24 border-r-4 pr-2"
                             :class="{
-                                'border-yellow-400':
+                                'border-my-green':
                                     meal.dayOfWeek === 'Sun' ||
                                     meal.dayOfWeek === 'Sat',
+                                'border-purple-500':
+                                    meal.dayOfWeek !== 'Sun' &&
+                                    meal.dayOfWeek !== 'Sat',
                             }"
                             >{{ meal.dayOfWeek }}</span
                         >

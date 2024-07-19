@@ -4,7 +4,7 @@
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
             <ClientOnly>
-                <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
+                <p class="text-my-green mb-6 text-4xl font-bold">Calendar</p>
                 <ul class="lg:text-3xl">
                     <li
                         class="mb-4 flex gap-6"
@@ -21,11 +21,15 @@
                             .slice(0, 8)"
                     >
                         <span
-                            class="w-[270px] border-r-4 border-purple-500"
+                            class="w-[270px] border-r-4"
                             :class="{
-                                'border-yellow-500':
+                                'border-my-green':
                                     formatDate($event.start).includes('Sat') ||
                                     formatDate($event.start).includes('Sun'),
+
+                                'border-purple-500':
+                                    !formatDate($event.start).includes('Sat') &&
+                                    !formatDate($event.start).includes('Sun'),
                             }"
                             >{{ formatDate($event.start) }}</span
                         >
