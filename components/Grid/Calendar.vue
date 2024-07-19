@@ -1,6 +1,6 @@
 <template>
     <DashGrid @refreshed-click="refresh">
-        <div v-if="error">Error</div>
+        <div v-if="error">{{ error }}</div>
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
             <ClientOnly>
@@ -21,14 +21,11 @@
                             .slice(0, 8)"
                     >
                         <span
-                            class="w-[270px] border-r-4"
+                            class="w-[270px] border-r-4 border-purple-500"
                             :class="{
-                                'border-blue-400':
-                                    $event.calendarId ===
-                                    'jonno.choo@gmail.com',
-                                'border-violet-500':
-                                    $event.calendarId ===
-                                    'joannejjma@gmail.com',
+                                'border-yellow-500':
+                                    formatDate($event.start).includes('Sat') ||
+                                    formatDate($event.start).includes('Sun'),
                             }"
                             >{{ formatDate($event.start) }}</span
                         >

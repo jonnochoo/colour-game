@@ -1,14 +1,14 @@
 <template>
     <DashGrid @refreshedClick="refresh">
-        <div v-if="error">Error</div>
+        <div v-if="error">{{ error }}</div>
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
             <ClientOnly>
-                <p class="mb-6 text-4xl font-bold text-[#f87359]">🍜Dinners</p>
+                <p class="mb-6 text-4xl font-bold text-[#f87359]">🍜 Dinners</p>
                 <ul class="lg:text-4xl">
                     <li class="mb-4 flex gap-4" v-for="meal in data.meals">
                         <span
-                            class="w-24 border-r-4 border-green-400 pr-2"
+                            class="w-24 border-r-4 border-purple-500 pr-2"
                             :class="{
                                 'border-yellow-400':
                                     meal.dayOfWeek === 'Sun' ||
