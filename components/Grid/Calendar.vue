@@ -1,0 +1,55 @@
+<template>
+    <DashGrid @refreshed-click="refresh">
+        <div v-if="error">Error</div>
+        <div v-else-if="pending"><GridPending /></div>
+        <div v-else>
+            <ClientOnly>
+                <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
+                <ul class="lg:text-3xl">
+                    <li
+                        class="mb-4 flex gap-4"
+                        v-for="$event in data.events
+                            ?.filter(
+                                (x) =>
+                                    x.summary !== 'Dupilumab' &&
+                                    x.summary !== 'SCHOOL HOLIDAYS' &&
+                                    x.summary !== 'No M&D' &&
+                                    x.summary !== 'take off this day!' &&
+                                    x.summary !== 'Grocery shopping' &&
+                                    x.summary !== 'Baz Birthday'
+                            )
+                            .slice(0, 8)"
+                    >
+                        <span
+                            class="w-72 border-r-4 pr-2"
+                            :class="{
+                                'border-blue-400':
+                                    $event.calendarId ===
+                                    'jonno.choo@gmail.com',
+                                'border-violet-500':
+                                    $event.calendarId ===
+                                    'joannejjma@gmail.com',
+                            }"
+                            >{{ formatDate($event.start) }}</span
+                        >
+                        <span class="w-[440px] truncate">{{
+                            $event.summary
+                        }}</span>
+                    </li>
+                </ul></ClientOnly
+            >
+        </div>
+    </DashGrid>
+</template>
+
+<script lang="ts" setup>
+import { format, parseISO, parse } from 'date-fns'
+const { data, pending, error, refresh } = await useFetch(`/api/calendar`)
+
+const formatDate = (d) => {
+    if (d.date) {
+        return format(parse(d.date, 'yyyy-MM-dd', new Date()), 'EEE, dd MMM')
+    }
+    return format(parseISO(d.dateTime), 'EEE, dd MMM H:mm')
+}
+</script>

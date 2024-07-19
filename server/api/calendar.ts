@@ -20,7 +20,21 @@ export default defineEventHandler(async (event) => {
         scopes: SCOPES,
     })
 
-    var events = await listEvents(auth, 'jonno.choo@gmail.com')
+    var events1 = await listEvents(auth, 'joannejjma@gmail.com')
+    var events2 = await listEvents(auth, 'jonno.choo@gmail.com')
+    var events = [events1?.items, events2?.items]
+        .flat()
+        .map((evt) => {
+            return {
+                summary: evt?.summary,
+                calendarId: evt?.creator.email,
+                start: evt?.start,
+                startDate: evt?.start.date || evt?.start?.dateTime,
+            }
+        })
+        .sort((a, b) =>
+            a.startDate > b.startDate ? 1 : a.startDate < b.startDate ? -1 : 0
+        )
     return {
         events,
     }

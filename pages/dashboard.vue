@@ -13,7 +13,7 @@
             <GridWeather />
             <GridNotes />
             <GridMeals />
-            <GridEvents />
+            <GridCalendar />
             <GridGoals />
             <GridElijah />
             <GridAbigail />
