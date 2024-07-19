@@ -25,4 +25,13 @@
 
 <script lang="ts" setup>
 const { data, pending, error, refresh } = await useFetch(`/api/bible`)
+
+onMounted(() => {
+    setInterval(
+        () => {
+            refresh()
+        },
+        25 * 1000 * 60
+    )
+})
 </script>

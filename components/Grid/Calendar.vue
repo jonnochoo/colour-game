@@ -52,4 +52,13 @@ const formatDate = (d) => {
     }
     return format(parseISO(d.dateTime), 'EEE, dd MMM H:mm')
 }
+
+onMounted(() => {
+    setInterval(
+        () => {
+            refresh()
+        },
+        10 * 1000 * 60
+    )
+})
 </script>
