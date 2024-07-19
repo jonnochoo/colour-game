@@ -7,7 +7,7 @@
                 <p class="mb-6 text-4xl font-bold text-[#50FA7B]">Calendar</p>
                 <ul class="lg:text-3xl">
                     <li
-                        class="mb-4 flex gap-4"
+                        class="mb-4 flex gap-6"
                         v-for="$event in data.events
                             ?.filter(
                                 (x) =>
@@ -21,7 +21,7 @@
                             .slice(0, 8)"
                     >
                         <span
-                            class="w-72 border-r-4 pr-2"
+                            class="w-[270px] border-r-4"
                             :class="{
                                 'border-blue-400':
                                     $event.calendarId ===
