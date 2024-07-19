@@ -1,6 +1,6 @@
 <template>
     <DashGrid>
-        <p class="mb-4 text-4xl font-bold text-[#fceb3c]">Goals</p>
+        <p class="mb-4 text-4xl font-bold text-[#fceb3c]">To Do List</p>
         <ul class="lg:text-3xl">
             <li
                 class="mb-3"
@@ -19,12 +19,14 @@ type goal = {
     isCompleted: boolean
 }
 const goals = ref<goal[]>([
-    { name: '🌲 Organise Arborist', isCompleted: false },
-    { name: '✈️ Start next steps for Cambodia', isCompleted: false },
     { name: '🍿 Go to the cinemas as a family', isCompleted: false },
     { name: '🚶 Go on a family bush walk', isCompleted: false },
     { name: '💌 Write message to Nai Nai', isCompleted: false },
-    { name: '🐒 Visit Sydney Zoo', isCompleted: true },
+    { name: '🌲 Organise arborist for hedges', isCompleted: false },
+    { name: '✈️ Start next steps for Cambodia', isCompleted: false },
+    { name: '📄 Prepare Elijah for OC exam', isCompleted: false },
+    { name: '⚡ Research new electricty provider', isCompleted: false },
+    { name: '☀️ Purchase new microwave', isCompleted: false },
     { name: "🥳 Celebrate Abi's party", isCompleted: true },
 ])
 </script>
