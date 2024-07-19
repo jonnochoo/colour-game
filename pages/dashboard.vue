@@ -12,7 +12,7 @@
             <GridClock />
             <GridWeather />
             <GridNotes />
-            <GridMeals />
+            <GridDinner />
             <GridCalendar />
             <GridGoals />
             <GridElijah />

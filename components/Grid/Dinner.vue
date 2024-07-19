@@ -10,7 +10,7 @@
                         <span
                             class="w-24 border-r-4 pr-2"
                             :class="{
-                                'border-my-green':
+                                'border-pink-500':
                                     meal.dayOfWeek === 'Sun' ||
                                     meal.dayOfWeek === 'Sat',
                                 'border-purple-500':

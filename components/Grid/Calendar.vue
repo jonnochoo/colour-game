@@ -23,13 +23,18 @@
                         <span
                             class="w-[270px] border-r-4"
                             :class="{
-                                'border-my-green':
+                                'border-pink-500':
                                     formatDate($event.start).includes('Sat') ||
                                     formatDate($event.start).includes('Sun'),
-
                                 'border-purple-500':
                                     !formatDate($event.start).includes('Sat') &&
-                                    !formatDate($event.start).includes('Sun'),
+                                    !formatDate($event.start).includes('Sun') &&
+                                    !formatDate($event.start).includes(
+                                        format(new Date(), 'EEE')
+                                    ),
+                                'border-green-500': formatDate(
+                                    $event.start
+                                ).includes(format(new Date(), 'EEE')),
                             }"
                             >{{ formatDate($event.start) }}</span
                         >
