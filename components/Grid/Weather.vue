@@ -40,13 +40,16 @@
                 </p>
                 <div class="flex gap-3 text-2xl">
                     <div class="text-[#f87359]">
-                        Humidity: {{ data.now.values.humidity }}
+                        Humidity: {{ data.now.values.humidity }}%
                     </div>
                     <div class="text-[#4dceb0]">
-                        Rain Intensity: {{ data.now.values.rainIntensity }}
+                        Rain Intensity: {{ data.now.values.rainIntensity }}mm/hr
                     </div>
                     <div class="text-[#fceb3c]">
                         UV: {{ data.now.values.uvIndex }}
+                    </div>
+                    <div class="text-blue-500">
+                        Wind Speed: {{ data.now.values.windSpeed }}
                     </div>
                 </div>
             </ClientOnly>
