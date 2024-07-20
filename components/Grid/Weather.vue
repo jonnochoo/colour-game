@@ -43,13 +43,13 @@
                         Humidity: {{ data.now.values.humidity }}%
                     </div>
                     <div class="text-[#4dceb0]">
-                        Rain Intensity: {{ data.now.values.rainIntensity }}mm/hr
+                        Rain: {{ data.now.values.rainIntensity }}mm/hr
                     </div>
                     <div class="text-[#fceb3c]">
                         UV: {{ data.now.values.uvIndex }}
                     </div>
                     <div class="text-blue-500">
-                        Wind Speed:
+                        Wind:
                         {{ Math.round(data.now.values.windSpeed * 3.6) }}km/s
                     </div>
                 </div>
