@@ -16,6 +16,10 @@ module.exports = {
                 'my-aqua': '#4dceb0',
                 'my-green': '#50FA7B',
             },
+            screens: {
+                desktop: '1920px',
+                'large-desktop': '2560px',
+            },
         },
     },
     plugins: [],
