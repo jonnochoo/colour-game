@@ -49,7 +49,8 @@
                         UV: {{ data.now.values.uvIndex }}
                     </div>
                     <div class="text-blue-500">
-                        Wind Speed: {{ data.now.values.windSpeed }}
+                        Wind Speed:
+                        {{ Math.round(data.now.values.windSpeed * 3.6) }}km/s
                     </div>
                 </div>
             </ClientOnly>
