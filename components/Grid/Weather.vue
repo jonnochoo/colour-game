@@ -50,7 +50,7 @@
                     </div>
                     <div class="text-blue-500">
                         Wind:
-                        {{ Math.round(data.now.values.windSpeed * 3.6) }}km/s
+                        {{ data.now.values.windSpeed }}
                     </div>
                 </div>
             </ClientOnly>
