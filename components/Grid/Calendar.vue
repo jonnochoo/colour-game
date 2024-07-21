@@ -11,7 +11,6 @@
                         v-for="$event in data.events
                             ?.filter(
                                 (x) =>
-                                    x.summary !== 'Dupilumab' &&
                                     x.summary !== 'SCHOOL HOLIDAYS' &&
                                     x.summary !== 'No M&D' &&
                                     x.summary !== 'take off this day!' &&
