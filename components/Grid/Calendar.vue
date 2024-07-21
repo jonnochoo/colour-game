@@ -59,11 +59,6 @@ const formatDate = (d) => {
 }
 
 onMounted(() => {
-    setInterval(
-        () => {
-            refresh()
-        },
-        10 * 1000 * 60
-    )
+    setInterval(refresh, Milliseconds.AsMinutes(5))
 })
 </script>

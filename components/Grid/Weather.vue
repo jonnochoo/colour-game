@@ -62,11 +62,6 @@
 const { data, pending, error, refresh } = await useFetch(`/api/weather`)
 
 onMounted(() => {
-    setInterval(
-        () => {
-            refresh()
-        },
-        15 * 1000 * 60
-    )
+    setInterval(refresh, Milliseconds.AsMinutes(15))
 })
 </script>

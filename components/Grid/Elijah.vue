@@ -15,4 +15,8 @@
 
 <script lang="ts" setup>
 const { data, pending, error, refresh } = await useFetch(`/api/elijah`)
+
+onMounted(() => {
+    setInterval(refresh, Milliseconds.AsMinutes(15))
+})
 </script>

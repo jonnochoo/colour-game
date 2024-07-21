@@ -29,17 +29,8 @@
 
 <script lang="ts" setup>
 const { data, error, refresh, pending } = await useFetch(`/api/trello`)
-type meal = {
-    name: string
-    dayOfWeek: string
-}
-const meals = ref<meal[]>([
-    { name: 'Sushi', dayOfWeek: 'Wednesday' },
-    { name: 'Japanese Curry', dayOfWeek: 'Thursday' },
-    { name: 'Corn Soup', dayOfWeek: 'Friday' },
-    { name: 'Karage Chicken', dayOfWeek: 'Saturday' },
-    { name: 'Chicken Schnitzel', dayOfWeek: 'Sunday' },
-    { name: 'Soup Noodles', dayOfWeek: 'Monday' },
-    // { name: '', dayOfWeek: 'Tuesday' },
-])
+
+onMounted(() => {
+    setInterval(refresh, Milliseconds.AsMinutes(15))
+})
 </script>

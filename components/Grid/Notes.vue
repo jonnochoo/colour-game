@@ -13,4 +13,7 @@
 
 <script lang="ts" setup>
 const { data, error, pending, refresh } = await useFetch(`/api/note`)
+onMounted(() => {
+    setInterval(refresh, Milliseconds.AsMinutes(15))
+})
 </script>

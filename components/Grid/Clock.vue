@@ -20,6 +20,9 @@ const setCurrentDateAndTime = () => {
 }
 onMounted(() => {
     setCurrentDateAndTime()
-    const intervalId = setInterval(setCurrentDateAndTime, 1000)
+    const intervalId = setInterval(
+        setCurrentDateAndTime,
+        Milliseconds.AsSeconds(1)
+    )
 })
 </script>
