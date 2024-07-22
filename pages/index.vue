@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <h2>Jonno</h2>
-        <section class="grid grid-cols-3 gap-4">
+    <div class="container">
+        <section class="mx-4 grid gap-4 lg:grid-cols-3">
             <GridBox to="/bible" text="Bible" />
             <GridBox to="/game" text="Game" />
             <GridBox to="/dashboard" text="Dashboard" />
