@@ -31,6 +31,6 @@
 const { data, error, refresh, pending } = await useFetch(`/api/trello`)
 
 onMounted(() => {
-    setInterval(refresh, Milliseconds.AsMinutes(15))
+    setInterval(refresh, Milliseconds.FromMinutes(15))
 })
 </script>

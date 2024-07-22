@@ -1,8 +1,8 @@
 export const Milliseconds = {
-    AsMinutes: (minutes: number) => {
+    FromMinutes: (minutes: number) => {
         return minutes * 1000 * 60
     },
-    AsSeconds: (seconds: number) => {
+    FromAsSeconds: (seconds: number) => {
         return seconds * 1000
     },
 }

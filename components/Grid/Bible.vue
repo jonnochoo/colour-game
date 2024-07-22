@@ -29,6 +29,6 @@
 const { data, pending, error, refresh } = await useFetch(`/api/bible`)
 
 onMounted(() => {
-    setInterval(refresh, Milliseconds.AsMinutes(30))
+    setInterval(refresh, Milliseconds.FromMinutes(30))
 })
 </script>
