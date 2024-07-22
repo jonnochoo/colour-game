@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const verse = contentNode.title[0]
     const text = contentNode['content:encoded'][0]
         .replace(
-            '.&rdquo;<br/><br/> Brought to you by <a href="https://www.biblegateway.com">BibleGateway.com</a>. Copyright (C) . All Rights Reserved.\n\t\t\t\t\t\t',
+            '&rdquo;<br/><br/> Brought to you by <a href="https://www.biblegateway.com">BibleGateway.com</a>. Copyright (C) . All Rights Reserved.\n\t\t\t\t\t\t',
             ''
         )
         .replace('\n\t\t\t\t\t\t\t&ldquo;', '')
