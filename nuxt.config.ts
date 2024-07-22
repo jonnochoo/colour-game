@@ -25,6 +25,7 @@ export default defineNuxtConfig({
             Lexend: true,
             'IBM Plex Sans Condensed': true,
             'IBM Plex Sans': true,
+            'Happy Monkey': true,
         },
     },
     runtimeConfig: {

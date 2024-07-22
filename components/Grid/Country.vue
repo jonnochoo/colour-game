@@ -20,7 +20,11 @@
 
                 <div>
                     <span class="text-[#f87359]"> Languages: </span>
-                    <span> {{ Object.values(data?.info[0].languages) }}</span>
+                    <span>
+                        {{
+                            Object.values(data?.info[0].languages).join(', ')
+                        }}</span
+                    >
                 </div>
             </div></ClientOnly
         >

@@ -1,5 +1,5 @@
 <template>
-    <DashGrid @refreshed-click="refresh" class="lg:col-span-3">
+    <DashGrid @refreshed-click="refresh" class="desktop:col-span-3">
         <div v-if="error">Error</div>
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>

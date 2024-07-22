@@ -11,6 +11,9 @@
         "test": "vitest run"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.6.0",
+        "@fortawesome/free-solid-svg-icons": "^6.6.0",
+        "@fortawesome/vue-fontawesome": "^3.0.8",
         "@google-cloud/local-auth": "^3.0.1",
         "@nuxtjs/google-fonts": "^3.2.0",
         "@tailwindcss/typography": "^0.5.13",
