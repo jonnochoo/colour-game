@@ -10,6 +10,6 @@ export default defineEventHandler(async (event) => {
     )
 
     return {
-        info: response.data,1
+        info: response.data,
     }
 })
