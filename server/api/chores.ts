@@ -41,9 +41,12 @@ export default defineEventHandler(async (event) => {
                 createMorningWeekDayChore('Pack school bag'),
 
                 createMorningWeekly('Reminder about dance class', ['Monday']),
-                createMorningWeekly('Wear sports clothes', ['Tuesday']),
-                createMorningWeekly('Pack gymanstics bag', ['Thursday']),
-                createMorningWeekly('Pack library bag', ['Friday']),
+                createMorningWeekly('Wear sports clothes', [
+                    'Monday',
+                    'Wednesday',
+                ]),
+                createMorningWeekly('Pack library bag', ['Tuesday']),
+                createMorningWeekly('Pack gymanstics bag', ['Friday']),
 
                 // Afternoon
                 createDailyAfternoonChores('Unpack bag (especially lunch bag)'),
@@ -88,14 +91,15 @@ export default defineEventHandler(async (event) => {
 
                 createMorningWeekDayChore('Pack school bag'),
 
-                createMorningWeekly('Pack library bag', ['Monday']),
+                createMorningWeekly('Pack library bag', ['Tuesday']),
                 createMorningWeekly('Pack cricket bag', [
                     'Wednesday',
                     'Saturday',
                 ]),
                 createMorningWeekly('Pack chinese bag', ['Wednesday']),
                 createMorningWeekly('Pack swimming bag', ['Friday']),
-                createMorningWeekly('Wear sports clothes and pack PSA sports', [
+                createMorningWeekly('Wear sports clothes', [
+                    'Tuesday',
                     'Friday',
                 ]),
 
