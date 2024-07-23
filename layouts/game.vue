@@ -1,6 +1,8 @@
 <template>
     <div>
-        <header class="font-['Fredoka_One'] p-4 pl-8 text-slate-800 bg-[#E0CA3C] text-5xl">
+        <header
+            class="bg-[#E0CA3C] p-4 pl-8 font-['Fredoka_One'] text-5xl text-slate-800"
+        >
             <NuxtLink to="/">🕹️Choo Games</NuxtLink>
         </header>
         <section class="container mx-auto pt-12">
@@ -8,6 +10,14 @@
         </section>
     </div>
 </template>
+
+<script setup lang="ts">
+useHead({
+    bodyAttrs: {
+        class: ['bg-background'].join(' '),
+    },
+})
+</script>
 
 <style scoped>
 body {

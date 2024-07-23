@@ -42,10 +42,4 @@ function setCategoryBasedOnTimeOfDay() {
 }
 </script>
 
-<style>
-body {
-    background-image: url('/bground1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-</style>
+<style></style>
