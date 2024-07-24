@@ -17,7 +17,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
-
+        options.Events.OnRedirectToLogin = context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return Task.CompletedTask;
+        };
     });
 builder.Services.AddCors(options =>
 {
@@ -68,7 +72,8 @@ app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> us
     return Results.Ok(result.Errors);
 }).WithOpenApi();
 
-app.MapGet("/test1", async () => "helo");
+app.MapGet("/test", async () => "helo")
+    .RequireAuthorization();
 app.MapGet("/bible", async (ApplicationDbContext dbContext) =>
 {
     await dbContext.Database.EnsureCreatedAsync();
