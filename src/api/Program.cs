@@ -17,7 +17,18 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
+
     });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+            policy =>
+            {
+                policy.AllowAnyOrigin();
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+            });
+});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -34,10 +45,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-// app.UseCookiePolicy(cookiePolicyOptions);
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.None,
+
+};
+app.UseCookiePolicy(cookiePolicyOptions);
+
 app.MapIdentityApi<User>();
 app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> userManager) =>
 {
@@ -51,7 +68,7 @@ app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> us
     return Results.Ok(result.Errors);
 }).WithOpenApi();
 
-
+app.MapGet("/test1", async () => "helo");
 app.MapGet("/bible", async (ApplicationDbContext dbContext) =>
 {
     await dbContext.Database.EnsureCreatedAsync();
