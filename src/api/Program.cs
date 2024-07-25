@@ -2,6 +2,7 @@ using System.Web;
 using System.Xml;
 using Flurl.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,18 +12,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite("Data Source=app.db"));
 builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-        options.Events.OnRedirectToLogin = context =>
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            return Task.CompletedTask;
-        };
-    });
+builder.Services.AddAuthentication();
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//     .AddCookie(options =>
+//     {
+//         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+//         options.SlidingExpiration = true;
+//         options.AccessDeniedPath = "/Forbidden/";
+//         options.Events.OnRedirectToLogin = context =>
+//         {
+//             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+//             return Task.CompletedTask;
+//         };
+//     });
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -55,7 +57,7 @@ app.UseAuthorization();
 var cookiePolicyOptions = new CookiePolicyOptions
 {
     MinimumSameSitePolicy = SameSiteMode.None,
-
+    HttpOnly = HttpOnlyPolicy.Always,
 };
 app.UseCookiePolicy(cookiePolicyOptions);
 

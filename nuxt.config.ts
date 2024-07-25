@@ -4,6 +4,7 @@ import tailwindTypography from '@tailwindcss/typography'
 export default defineNuxtConfig({
     devtools: { enabled: true },
     css: ['~/assets/css/main.css'],
+    ssr: false,
     modules: [
         '@nuxt/test-utils/module',
         '@nuxtjs/google-fonts',
