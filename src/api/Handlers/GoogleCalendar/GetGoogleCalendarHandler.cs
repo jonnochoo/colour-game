@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
+using JasperFx.Core.Reflection;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Wolverine;
@@ -16,11 +17,6 @@ public class GetGoogleCalendarHandler : IWolverineHandler
     {
         // Props to: https://stackoverflow.com/questions/40144018/access-google-calendar-api-using-service-account-authentication
         // https://www.daimto.com/google-service-accounts-with-json-file/
-        using var stream = new MemoryStream();
-        var writer = new StreamWriter(stream);
-        await writer.WriteAsync(googleCalendarOptions.Value.PrivateKey);
-        await writer.FlushAsync();
-        stream.Position = 0;
         var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(googleCalendarOptions.Value.ServiceEmailAccount)
         {
             Scopes = [CalendarService.Scope.Calendar]
@@ -33,6 +29,9 @@ public class GetGoogleCalendarHandler : IWolverineHandler
             HttpClientInitializer = credential,
         });
 
-        return googleCalendarService.Events.List("jonno.choo@gmail.com");
+        var googleResponse = await googleCalendarService.Events.List("jonno.choo@gmail.com").ExecuteAsync();
+        var googleCalendarData = googleResponse.Items;
+
+        return googleCalendarData;
     }
 }
