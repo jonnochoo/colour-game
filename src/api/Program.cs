@@ -69,7 +69,8 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 // Routing
 app.MapIdentityApi<User>();
-app.MapGet("/trello", async (IMessageBus bus) => await bus.InvokeAsync<object>(new GetTrelloCardRequest { CardId = "6698f15b08496fa1b211f617" }));
+app.MapGet("/trello/abigail", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
+app.MapGet("/trello/elijah", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
@@ -78,3 +79,11 @@ app.MapGet("/auth", () => "OK")
     .RequireAuthorization();
 
 return await app.RunOaktonCommands(args);
+
+// Add SignalR (push to update)
+// Add validation for Options
+// Alba style testing
+// Add Google Calendar
+// Update prod for Wolverine
+// Deploy
+// Add Spotify integration
