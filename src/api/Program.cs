@@ -1,5 +1,6 @@
 using api.Handlers;
 using api.Handlers.BootstrapDatabase;
+using api.Handlers.Trello;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
@@ -36,8 +37,11 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseWolverine();
 
 // Configure Options
+// TODO: Validate options
 builder.Services.Configure<TomorrowWeatherOptions>(
     builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
+builder.Services.Configure<TrelloOptions>(
+    builder.Configuration.GetSection(TrelloOptions.ConfigName));
 
 // Configure services
 builder.Services.AddMemoryCache();
@@ -65,7 +69,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 // Routing
 app.MapIdentityApi<User>();
-app.MapGet("/", async (IMessageBus bus) => await bus.InvokeAsync<TrelloCard>(new GetTrelloCardRequest()));
+app.MapGet("/trello", async (IMessageBus bus) => await bus.InvokeAsync<object>(new GetTrelloCardRequest { CardId = "6698f15b08496fa1b211f617" }));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));

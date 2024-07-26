@@ -1,12 +1,16 @@
+using Flurl.Http;
+using Microsoft.Extensions.Options;
 using Wolverine;
 
-namespace api.Handlers;
+namespace api.Handlers.Trello;
 
 public class GetTrelloCardHandler : IWolverineHandler
 {
-    public TrelloCard Handle(GetTrelloCardRequest command)
+    public async Task<object> Handle(GetTrelloCardRequest request, IOptions<TrelloOptions> trelloOptions)
     {
-        Console.WriteLine("I got a message!");
-        return new TrelloCard() { Text = "potato" };
+        string url = $"https://api.trello.com/1/cards/{request.CardId}?key={trelloOptions.Value.ApiKey}&token={trelloOptions.Value.Token}";
+        var response = await url.GetAsync();
+        var trelloResult = await response.GetJsonAsync<object>();
+        return trelloResult;
     }
 }

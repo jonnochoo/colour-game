@@ -1,7 +1,6 @@
 namespace api.Handlers;
 
-public class GetTrelloCardRequest
+public record GetTrelloCardRequest
 {
-    public string MyProperty { get; set; }
-
+    public required string CardId { get; init; }
 }
