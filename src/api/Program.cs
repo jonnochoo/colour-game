@@ -1,8 +1,6 @@
-using System.Web;
-using System.Xml;
 using api.Handlers;
+using api.Handlers.BootstrapDatabase;
 using Microsoft.AspNetCore.CookiePolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
 using Serilog;
@@ -58,21 +56,9 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 app.MapIdentityApi<User>();
 app.MapGet("/", async (IMessageBus bus) => await bus.InvokeAsync<TrelloCard>(new GetTrelloCardRequest()));
+app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
-
-app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> userManager) =>
-{
-    await dbContext.Database.EnsureCreatedAsync();
-
-    User user = new User
-    {
-        UserName = "user"
-    };
-    var result = await userManager.CreateAsync(user, "Password123!");
-    return Results.Ok(result.Errors);
-}).WithOpenApi();
-
-app.MapGet("/auth", async () => "OK")
+app.MapGet("/auth", () => "OK")
     .RequireAuthorization();
 
 return await app.RunOaktonCommands(args);
