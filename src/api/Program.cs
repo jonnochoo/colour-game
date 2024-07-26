@@ -1,30 +1,22 @@
 using System.Web;
 using System.Xml;
-using Flurl.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using api.Handlers;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Oakton;
+using Serilog;
+using Wolverine;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite("Data Source=app.db"));
 builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication();
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//     .AddCookie(options =>
-//     {
-//         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-//         options.SlidingExpiration = true;
-//         options.AccessDeniedPath = "/Forbidden/";
-//         options.Events.OnRedirectToLogin = context =>
-//         {
-//             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-//             return Task.CompletedTask;
-//         };
-//     });
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -38,8 +30,11 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSerilog(); // <-- Add this line
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Host.UseWolverine();
 
 var app = builder.Build();
 
@@ -49,19 +44,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 var cookiePolicyOptions = new CookiePolicyOptions
 {
-    MinimumSameSitePolicy = SameSiteMode.None,
+    MinimumSameSitePolicy = SameSiteMode.Lax,
     HttpOnly = HttpOnlyPolicy.Always,
 };
 app.UseCookiePolicy(cookiePolicyOptions);
 
 app.MapIdentityApi<User>();
+app.MapGet("/", async (IMessageBus bus) => await bus.InvokeAsync<TrelloCard>(new GetTrelloCardRequest()));
+app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
+
 app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> userManager) =>
 {
     await dbContext.Database.EnsureCreatedAsync();
@@ -74,32 +72,7 @@ app.MapGet("/start", async (ApplicationDbContext dbContext, UserManager<User> us
     return Results.Ok(result.Errors);
 }).WithOpenApi();
 
-app.MapGet("/test", async () => "helo")
+app.MapGet("/auth", async () => "OK")
     .RequireAuthorization();
-app.MapGet("/bible", async (ApplicationDbContext dbContext) =>
-{
-    await dbContext.Database.EnsureCreatedAsync();
-    string url = "https://www.biblegateway.com/usage/votd/rss/votd.rdf";
-    var xmlContent = await url.GetStringAsync();
-    XmlDocument doc = new XmlDocument();
-    doc.LoadXml(xmlContent);
 
-    XmlNode contentNode = doc.SelectSingleNode("/rss/channel/item");
-    if (contentNode != null)
-    {
-        string verse = contentNode.ChildNodes[0].InnerText;
-        string text = HttpUtility.HtmlDecode(contentNode.ChildNodes[3].InnerText)
-            .Replace("<br/><br/> Brought to you by <a href=\"https://www.biblegateway.com\">BibleGateway.com</a>. Copyright (C) . All Rights Reserved.", String.Empty);
-        return new Passage
-        {
-            Verse = verse,
-            Text = text
-        };
-    }
-
-    return null;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-app.Run();
+return await app.RunOaktonCommands(args);
