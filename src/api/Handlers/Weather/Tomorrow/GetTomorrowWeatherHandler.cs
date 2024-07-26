@@ -9,8 +9,9 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
 {
     public async Task<object> Handle(GetWeatherRequest request, IOptions<TomorrowWeatherOptions> options, ILogger<GetTomorrowWeatherHandler> logger, IMemoryCache memoryCache)
     {
+        const string weatherCacheKey = "weather";
         object weatherResponse = null!;
-        if (!memoryCache.TryGetValue("weather", out weatherResponse))
+        if (!memoryCache.TryGetValue(weatherCacheKey, out weatherResponse))
         {
             string weatherApiKey = options.Value.ApiKey;
             string url = $"https://api.tomorrow.io/v4/weather/forecast?location={request.Longitude},{request.Latitude}&apikey={weatherApiKey}";
@@ -21,7 +22,7 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
                 throw new InvalidOperationException(response.StatusCode.ToString());
             }
             weatherResponse = await response.GetJsonAsync<object>();
-            memoryCache.Set("weather", weatherResponse, new MemoryCacheEntryOptions()
+            memoryCache.Set(weatherCacheKey, weatherResponse, new MemoryCacheEntryOptions()
                 .SetAbsoluteExpiration(TimeSpan.FromSeconds(10)));
             logger.LogInformation($"Retrieved from API!");
 
