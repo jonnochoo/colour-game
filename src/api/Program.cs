@@ -12,6 +12,8 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite("Data Source=app.db"));
+
+// Configure security
 builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication();
@@ -26,12 +28,17 @@ builder.Services.AddCors(options =>
             });
 });
 
-// Add services to the container.
+// Add infrastructure
 builder.Services.AddSerilog();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Host.UseWolverine();
+
+// Configure Options
+builder.Services.Configure<TomorrowWeatherOptions>(
+    builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
+
 
 // Create the web app.
 var app = builder.Build();
