@@ -1,6 +1,8 @@
+using Wolverine;
+
 namespace api.Handlers;
 
-public class GetTrelloCardHandler
+public class GetTrelloCardHandler : IWolverineHandler
 {
     public TrelloCard Handle(GetTrelloCardRequest command)
     {

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity;
+using Wolverine;
 
 namespace api.Handlers.BootstrapDatabase;
-public class BootstrapDatabaseHandler
+public class BootstrapDatabaseHandler : IWolverineHandler
 {
     public async Task Handle(BootstrapDatabaseRequest request, ApplicationDbContext dbContext, UserManager<User> userManager)
     {

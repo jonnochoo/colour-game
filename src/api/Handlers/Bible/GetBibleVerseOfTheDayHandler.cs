@@ -1,10 +1,11 @@
 using System.Web;
 using System.Xml;
 using Flurl.Http;
+using Wolverine;
 
 namespace api.Handlers;
 
-public class GetBibleVerseOfTheDayHandler
+public class GetBibleVerseOfTheDayHandler : IWolverineHandler
 {
     public async Task<Passage> Handle(GetBibleVerseOfTheDayRequest command)
     {
