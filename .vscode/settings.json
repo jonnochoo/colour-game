@@ -1,3 +1,11 @@
 {
-    "cSpell.words": ["nuxt", "nuxtjs", "Serilog", "tailwindcss", "vuedraggable"]
+    "cSpell.words": [
+        "Flurl",
+        "Ntfy",
+        "nuxt",
+        "nuxtjs",
+        "Serilog",
+        "tailwindcss",
+        "vuedraggable"
+    ]
 }
