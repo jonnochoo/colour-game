@@ -18,6 +18,6 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
             throw new InvalidOperationException(response.StatusCode.ToString());
         }
 
-        return response;
+        return await response.GetJsonAsync<object>();
     }
 }
