@@ -60,6 +60,7 @@ app.MapGet("/", async (IMessageBus bus) => await bus.InvokeAsync<TrelloCard>(new
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
+app.MapGet("/weather", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(GetWeatherRequest.BaulkhamHills()));
 app.MapGet("/auth", () => "OK")
     .RequireAuthorization();
 
