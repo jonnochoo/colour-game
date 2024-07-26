@@ -27,22 +27,22 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddSerilog(); // <-- Add this line
+builder.Services.AddSerilog();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Host.UseWolverine();
 
+// Create the web app.
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 app.UseSerilogRequestLogging();
+
+// Security Related
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();
@@ -54,6 +54,7 @@ var cookiePolicyOptions = new CookiePolicyOptions
 };
 app.UseCookiePolicy(cookiePolicyOptions);
 
+// Routing
 app.MapIdentityApi<User>();
 app.MapGet("/", async (IMessageBus bus) => await bus.InvokeAsync<TrelloCard>(new GetTrelloCardRequest()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
