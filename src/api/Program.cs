@@ -38,6 +38,8 @@ builder.Host.UseWolverine();
 
 // Configure Options
 // TODO: Validate options
+builder.Services.Configure<GoogleCalendarOptions>(
+    builder.Configuration.GetSection(GoogleCalendarOptions.ConfigName));
 builder.Services.Configure<TomorrowWeatherOptions>(
     builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
 builder.Services.Configure<TrelloOptions>(
@@ -69,14 +71,14 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 // Routing
 app.MapIdentityApi<User>();
+app.MapGet("/auth", () => "OK").RequireAuthorization();
+app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
+app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
+app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<object>(new GetGoogleCalendarRequest()));
 app.MapGet("/trello/abigail", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
 app.MapGet("/trello/elijah", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
-app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
-app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
 app.MapGet("/weather", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
-app.MapGet("/auth", () => "OK")
-    .RequireAuthorization();
 
 return await app.RunOaktonCommands(args);
 
