@@ -39,6 +39,8 @@ builder.Host.UseWolverine();
 builder.Services.Configure<TomorrowWeatherOptions>(
     builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
 
+// Configure services
+builder.Services.AddMemoryCache();
 
 // Create the web app.
 var app = builder.Build();
