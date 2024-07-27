@@ -1,4 +1,4 @@
-namespace api.Handlers.Trello;
+namespace api.Handlers.GoogleCalendar;
 
 public record GetGoogleCalendarRequest
 {

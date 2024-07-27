@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using System.Text;
 using Google.Apis.Auth;
 using Google.Apis.Auth.OAuth2;
@@ -10,11 +11,11 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Wolverine;
 
-namespace api.Handlers.Trello;
+namespace api.Handlers.GoogleCalendar;
 
 public class GetGoogleCalendarHandler : IWolverineHandler
 {
-    public async Task<Event[]> Handle(GetGoogleCalendarRequest request, IOptions<GoogleCalendarOptions> googleCalendarOptions, IMemoryCache memoryCache)
+    public async Task<EventDto[]> Handle(GetGoogleCalendarRequest request, IOptions<GoogleCalendarOptions> googleCalendarOptions, IMemoryCache memoryCache)
     {
         // Props to: https://stackoverflow.com/questions/40144018/access-google-calendar-api-using-service-account-authentication
         // https://www.daimto.com/google-service-accounts-with-json-file/
@@ -31,8 +32,12 @@ public class GetGoogleCalendarHandler : IWolverineHandler
 
         var events1 = await GetEventsFromCalendar(googleCalendarService, "jonno.choo@gmail.com");
         var events2 = await GetEventsFromCalendar(googleCalendarService, "joannejjma@gmail.com");
+        EventDto[] events = [
+            ..events1.Select(EventDto.CreateFrom).ToArray(),
+            ..events2.Select(EventDto.CreateFrom).ToArray()
+            ];
 
-        return [.. events1, .. events2];
+        return events.OrderBy(e => e.StartDateOffset).ToArray();
     }
 
     private async Task<IList<Event>> GetEventsFromCalendar(CalendarService googleCalendarService, string calendarId)

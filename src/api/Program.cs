@@ -1,5 +1,6 @@
 using api.Handlers;
 using api.Handlers.BootstrapDatabase;
+using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
@@ -75,7 +76,7 @@ app.MapGet("/", () => "OK");
 app.MapGet("/auth", () => "OK").RequireAuthorization();
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
-app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<object>(new GetGoogleCalendarRequest()));
+app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()));
 app.MapGet("/trello/abigail", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
 app.MapGet("/trello/elijah", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
