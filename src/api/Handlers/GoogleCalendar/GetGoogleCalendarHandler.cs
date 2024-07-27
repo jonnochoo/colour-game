@@ -33,8 +33,8 @@ public class GetGoogleCalendarHandler : IWolverineHandler
         var events1 = await GetEventsFromCalendar(googleCalendarService, "jonno.choo@gmail.com");
         var events2 = await GetEventsFromCalendar(googleCalendarService, "joannejjma@gmail.com");
         EventDto[] events = [
-            ..events1.Select(EventDto.CreateFrom).ToArray(),
-            ..events2.Select(EventDto.CreateFrom).ToArray()
+            ..events1.Select(EventDto.CreateFrom),
+            ..events2.Select(EventDto.CreateFrom)
             ];
 
         return events.OrderBy(e => e.StartDateOffset).ToArray();
