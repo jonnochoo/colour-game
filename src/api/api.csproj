@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="fluentvalidation" Version="11.9.2" />
     <PackageReference Include="flurl.http" Version="4.0.2" />
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.68.0.3473" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />

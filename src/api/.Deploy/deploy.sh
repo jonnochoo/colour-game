@@ -26,6 +26,7 @@ KillSignal=SIGINT
 SyslogIdentifier=$SERVICE_NAME
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+EnvironmentFile=/etc/systemd/system/$SERVICE_NAME.conf
 
 [Install]
 WantedBy=multi-user.target

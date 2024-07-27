@@ -2,6 +2,7 @@ using api.Handlers;
 using api.Handlers.BootstrapDatabase;
 using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
+using Api.Bootstrap.Validation;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
@@ -39,12 +40,10 @@ builder.Host.UseWolverine();
 
 // Configure Options
 // TODO: Validate options
-builder.Services.Configure<GoogleCalendarOptions>(
-    builder.Configuration.GetSection(GoogleCalendarOptions.ConfigName));
 builder.Services.Configure<TomorrowWeatherOptions>(
     builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
-builder.Services.Configure<TrelloOptions>(
-    builder.Configuration.GetSection(TrelloOptions.ConfigName));
+builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>(GoogleCalendarOptions.ConfigName);
+builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>(TrelloOptions.ConfigName);
 
 // Configure services
 builder.Services.AddMemoryCache();
