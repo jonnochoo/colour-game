@@ -3,6 +3,7 @@ using api.Handlers.BootstrapDatabase;
 using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
 using Api.Bootstrap.Validation;
+using Api.Handlers.Weather.Tomorrow;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
@@ -39,10 +40,8 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseWolverine();
 
 // Configure Options
-// TODO: Validate options
-builder.Services.Configure<TomorrowWeatherOptions>(
-    builder.Configuration.GetSection(TomorrowWeatherOptions.ConfigName));
 builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>(GoogleCalendarOptions.ConfigName);
+builder.Services.AddOptionsWithValidation<TomorrowWeatherOptions, TomorrowWeatherOptionsValidator>(TomorrowWeatherOptions.ConfigName);
 builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>(TrelloOptions.ConfigName);
 
 // Configure services
@@ -84,7 +83,6 @@ app.MapGet("/weather", async (IMessageBus bus) => await bus.InvokeAsync<object>(
 return await app.RunOaktonCommands(args);
 
 // Add SignalR (push to update)
-// Add validation for Options
 // Alba style testing
 // Add Google Calendar: finish
 // Update prod for Wolverine
