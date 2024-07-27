@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+    postgres:
+        image: postgres:15.0
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: postgres
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        ports:
+            - '5432:5432'
+        networks:
+            - mynetwork
+
+    api:
+        depends_on:
+            - postgres
+        build:
+            context: .
+            dockerfile: Dockerfile.API
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development
+        ports:
+            - '8000:80'
+        volumes:
+            - .:/app
+        command: bash -c "dotnet ef database update && dotnet MyDotNetApp.dll"
+        networks:
+            - mynetwork
+volumes:
+    pgdata:
+
+networks:
+    mynetwork:
