@@ -71,6 +71,7 @@ app.UseCookiePolicy(cookiePolicyOptions);
 
 // Routing
 app.MapIdentityApi<User>();
+app.MapGet("/", () => "OK");
 app.MapGet("/auth", () => "OK").RequireAuthorization();
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
@@ -85,7 +86,8 @@ return await app.RunOaktonCommands(args);
 // Add SignalR (push to update)
 // Add validation for Options
 // Alba style testing
-// Add Google Calendar
+// Add Google Calendar: finish
 // Update prod for Wolverine
 // Deploy
 // Add Spotify integration
+// Think about how we can do better integration with caching layer
