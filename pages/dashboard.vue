@@ -64,6 +64,7 @@
 definePageMeta({
     layout: 'dashboard',
 })
+const store = useNotesStore()
 </script>
 <style scoped>
 body {
