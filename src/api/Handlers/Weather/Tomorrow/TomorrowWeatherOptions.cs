@@ -1,7 +1,9 @@
+using Api.Bootstrap.Options;
+
 namespace Api.Handlers.Weather.Tomorrow;
-public class TomorrowWeatherOptions
+public class TomorrowWeatherOptions : IConfigOptions
 {
-    public const string ConfigName = "TomorrowWeather";
+    public static string SectionName => "TomorrowWeather";
 
     public string ApiKey { get; set; } = null!;
 }

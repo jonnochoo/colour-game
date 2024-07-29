@@ -1,9 +1,11 @@
+namespace Api.Handlers.Weather.Tomorrow;
+
+using api.Handlers;
 using Flurl.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Wolverine;
 
-namespace api.Handlers;
 
 public class GetTomorrowWeatherHandler : IWolverineHandler
 {

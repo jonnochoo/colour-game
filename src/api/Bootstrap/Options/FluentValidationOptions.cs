@@ -1,10 +1,10 @@
-namespace Api.Bootstrap.Validation;
+namespace Api.Bootstrap.Options;
 
 using FluentValidation;
 using Microsoft.Extensions.Options;
 
 // From https://andrewlock.net/adding-validation-to-strongly-typed-configuration-objects-using-flentvalidation/
-public class FluentValidationOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class
+public class FluentValidationOptions<TOptions> : IValidateOptions<TOptions> where TOptions : class, IConfigOptions
 {
     private readonly IServiceProvider serviceProvider;
     private readonly string? name;

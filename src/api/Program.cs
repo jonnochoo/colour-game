@@ -2,7 +2,7 @@ using api.Handlers;
 using api.Handlers.BootstrapDatabase;
 using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
-using Api.Bootstrap.Validation;
+using Api.Bootstrap.Options;
 using Api.Handlers.Weather.Tomorrow;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
@@ -37,12 +37,15 @@ builder.Services.AddSerilog();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Host.UseWolverine();
+builder.Host.UseWolverine(opts =>
+{
+    opts.Policies.AddMiddleware<InMemoryCacheMiddleware>();
+});
 
 // Configure Options
-builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>(GoogleCalendarOptions.ConfigName);
-builder.Services.AddOptionsWithValidation<TomorrowWeatherOptions, TomorrowWeatherOptionsValidator>(TomorrowWeatherOptions.ConfigName);
-builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>(TrelloOptions.ConfigName);
+builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>();
+builder.Services.AddOptionsWithValidation<TomorrowWeatherOptions, TomorrowWeatherOptionsValidator>();
+builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>();
 
 // Configure services
 builder.Services.AddMemoryCache();
@@ -84,8 +87,9 @@ return await app.RunOaktonCommands(args);
 
 // Add SignalR (push to update)
 // Alba style testing
-// Add Google Calendar: finish
 // Update prod for Wolverine
 // Deploy
 // Add Spotify integration
 // Think about how we can do better integration with caching layer
+// Add auth
+// Integrate with Nuxt to C# Api

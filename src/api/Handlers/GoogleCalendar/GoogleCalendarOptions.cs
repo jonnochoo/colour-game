@@ -1,10 +1,11 @@
+using Api.Bootstrap.Options;
 using FluentValidation;
 
 namespace api.Handlers.GoogleCalendar;
 
-public record GoogleCalendarOptions
+public record GoogleCalendarOptions : IConfigOptions
 {
-    public const string ConfigName = "GoogleCalendar";
+    public static string SectionName => "GoogleCalendar";
     public required string PrivateKey { get; init; }
     public required string ServiceEmailAccount { get; init; }
 }
