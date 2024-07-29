@@ -15,7 +15,7 @@ namespace api.Handlers.GoogleCalendar;
 
 public class GetGoogleCalendarHandler : IWolverineHandler
 {
-    public async Task<EventDto[]> Handle(GetGoogleCalendarRequest request, IOptions<GoogleCalendarOptions> googleCalendarOptions, IMemoryCache memoryCache)
+    public async Task<EventDto[]> Handle(GetGoogleCalendarRequest request, IOptions<GoogleCalendarOptions> googleCalendarOptions)
     {
         // Props to: https://stackoverflow.com/questions/40144018/access-google-calendar-api-using-service-account-authentication
         // https://www.daimto.com/google-service-accounts-with-json-file/

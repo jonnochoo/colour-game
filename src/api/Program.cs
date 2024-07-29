@@ -2,9 +2,11 @@ using api.Handlers;
 using api.Handlers.BootstrapDatabase;
 using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
+using Api.Bootstrap.Cache;
 using Api.Bootstrap.Options;
 using Api.Handlers.Weather.Tomorrow;
 using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
 using Serilog;
@@ -37,10 +39,7 @@ builder.Services.AddSerilog();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Host.UseWolverine(opts =>
-{
-    opts.Policies.AddMiddleware<InMemoryCacheMiddleware>();
-});
+builder.Host.UseWolverine();
 
 // Configure Options
 builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>();
@@ -49,6 +48,12 @@ builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>
 
 // Configure services
 builder.Services.AddMemoryCache();
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromSeconds(5)));
+    options.AddPolicy(CachePolicyName.ThirtySeconds, builder => builder.Expire(TimeSpan.FromSeconds(30)));
+    options.AddPolicy(CachePolicyName.FiveMinutes, builder => builder.Expire(TimeSpan.FromMinutes(5)));
+});
 
 // Create the web app.
 var app = builder.Build();
@@ -75,13 +80,15 @@ app.UseCookiePolicy(cookiePolicyOptions);
 app.MapIdentityApi<User>();
 app.MapGet("/", () => "OK");
 app.MapGet("/auth", () => "OK").RequireAuthorization();
-app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
+app.MapGet("/bible", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
-app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()));
-app.MapGet("/trello/abigail", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
-app.MapGet("/trello/elijah", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
+app.MapGet("/google-calendar", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()));
+app.MapGet("/trello/abigail", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
+app.MapGet("/trello/elijah", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
-app.MapGet("/weather", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
+app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
+
+app.UseOutputCache();
 
 return await app.RunOaktonCommands(args);
 
