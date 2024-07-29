@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
 using Serilog;
+using SignalRChat.Hubs;
 using Wolverine;
 
 Log.Logger = new LoggerConfiguration()
@@ -38,6 +39,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddSerilog();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 builder.Host.UseWolverine();
 
@@ -87,6 +89,8 @@ app.MapGet("/trello/abigail", [OutputCache] async (IMessageBus bus) => await bus
 app.MapGet("/trello/elijah", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
+
+app.MapHub<DashboardHub>("/hubs/dashboard");
 
 app.UseOutputCache();
 
