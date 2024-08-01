@@ -6,7 +6,7 @@ pushd ..
 sudo docker compose down
 sudo docker system prune --force
 
-git switch dev
+git switch master
 git pull
 sudo docker compose up -d --build
 
