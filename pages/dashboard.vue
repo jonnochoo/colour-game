@@ -1,10 +1,16 @@
 <template>
     <div class="z-10">
-        <header class="flex items-center">
+        <header class="flex justify-between">
             <div>
                 <h1 class="font-[lexend] text-2xl text-white lg:text-6xl">
                     🏏 The Choo Family Dashboard
                 </h1>
+            </div>
+            <div>
+                <button @click="toggle" class="mt-4 text-gray-400">
+                    <span v-if="!isFullscreen">Go Full Screen</span>
+                    <span class="text-gray-700" v-else>Exit Full Screen</span>
+                </button>
             </div>
         </header>
         <div class="mt-8 grid gap-6 lg:grid-cols-3">
@@ -61,6 +67,9 @@
 </template>
 
 <script setup lang="ts">
+import { useFullscreen } from '@vueuse/core'
+
+const { isFullscreen, enter, exit, toggle } = useFullscreen()
 definePageMeta({
     layout: 'dashboard',
 })
