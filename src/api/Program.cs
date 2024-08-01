@@ -44,7 +44,8 @@ builder.Services.AddSignalR();
 builder.Host.UseWolverine();
 
 // Configure Options
-builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>();
+builder.Services.AddOptionsWithValidation<GoogleCalendarOptions, GoogleCalendarOptionsValidator>()
+    .PostConfigure(x => { x.PrivateKey = x.PrivateKey.Replace("\\n", "\n"); });
 builder.Services.AddOptionsWithValidation<TomorrowWeatherOptions, TomorrowWeatherOptionsValidator>();
 builder.Services.AddOptionsWithValidation<TrelloOptions, TrelloOptionsValidator>();
 

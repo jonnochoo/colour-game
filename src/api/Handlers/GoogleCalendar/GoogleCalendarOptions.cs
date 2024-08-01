@@ -6,7 +6,7 @@ namespace api.Handlers.GoogleCalendar;
 public record GoogleCalendarOptions : IConfigOptions
 {
     public static string SectionName => "GoogleCalendar";
-    public required string PrivateKey { get; init; }
+    public required string PrivateKey { get; set; }
     public required string ServiceEmailAccount { get; init; }
 }
 

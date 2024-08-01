@@ -20,13 +20,10 @@ services:
         build:
             context: .
             dockerfile: Dockerfile.API
-        environment:
-            ASPNETCORE_ENVIRONMENT: Development
+        env_file:
+            - 'app.env'
         ports:
-            - '8000:80'
-        volumes:
-            - .:/app
-        command: bash -c "dotnet ef database update && dotnet MyDotNetApp.dll"
+            - '5000:8080'
         networks:
             - mynetwork
 volumes:
