@@ -78,8 +78,7 @@ const config = useRuntimeConfig()
 const { data, pending, error, refresh } = await useFetch(
     `weather`, {
     baseURL: config.public.baseUrl,
-}
-)
+})
 
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))
