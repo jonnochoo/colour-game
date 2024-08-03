@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns'
 const { data, pending, error, refresh } = await useFetch(
-    `http://192.168.86.32:5000/google-calendar`
+    `https://jonno-pi.tail88a240.ts.net/google-calendar`
 )
 
 const formatDate = ($event) => {
