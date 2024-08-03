@@ -37,7 +37,7 @@ public class GetMealsRequestHandler : IWolverineHandler
             "mon" or "monday" => DayOfWeek.Monday,
             "tue" or "tuesday" => DayOfWeek.Tuesday,
             "wed" or "wednesday" => DayOfWeek.Wednesday,
-            "thu" or "thursday" => DayOfWeek.Tuesday,
+            "thu" or "thursday" => DayOfWeek.Thursday,
             "fri" or "friday" => DayOfWeek.Friday,
             "sat" or "saturday" => DayOfWeek.Saturday,
             "sun" or "sunday" => DayOfWeek.Sunday,
