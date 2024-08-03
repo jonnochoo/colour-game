@@ -6,7 +6,7 @@
             <ClientOnly>
                 <p class="mb-6 text-4xl font-bold text-[#f87359]">🍜 Dinners</p>
                 <ul class="lg:text-4xl">
-                    <li class="mb-4 flex gap-4" v-for="meal in data.meals">
+                    <li class="mb-4 flex gap-4" v-for="meal in data">
                         <span
                             class="w-24 border-r-4 pr-2"
                             :class="{
@@ -28,7 +28,10 @@
 </template>
 
 <script lang="ts" setup>
-const { data, error, refresh, pending } = await useFetch(`/api/trello`)
+const config = useRuntimeConfig()
+const { data, error, refresh, pending } = await useFetch(`/trello/meals`, {
+    baseURL: config.public.baseUrl,
+})
 
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))

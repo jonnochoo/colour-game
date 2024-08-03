@@ -46,8 +46,8 @@ const { data, pending, error, refresh } = await useFetch(`google-calendar`, {
 
 const formatDate = ($event) => {
     return $event.isAllDay
-        ? format(parseISO($event.startDateOffset), 'EEE, dd MMM')
-        : format(parseISO($event.startDateOffset), 'EEE, dd MMM H:mm')
+        ? format(parseISO($event.startDateOffset), 'EEE, d MMM')
+        : format(parseISO($event.startDateOffset), 'EEE, d MMM H:mm')
 }
 
 onMounted(() => {

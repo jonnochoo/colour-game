@@ -1,6 +1,6 @@
 <template>
     <DashGrid @refreshed-click="refresh" class="desktop:col-span-3">
-        <div v-if="error">Error</div>
+        <div v-if="error">{{ error }}</div>
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
             <ClientOnly>

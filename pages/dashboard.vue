@@ -18,7 +18,7 @@
             <GridClock />
             <GridWeather />
             <GridNotes />
-            <GridDinner />
+            <GridMeals />
             <GridCalendar />
             <GridGoals />
             <GridElijah />
