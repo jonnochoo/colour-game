@@ -30,7 +30,7 @@ public record EventDto
             Summary = evt.Summary,
             StartDateOffset = startDateOffset.Value,
             IsAllDay = isAllDay,
-            IsWeekend = startDateOffset.Value.LocalDateTime.DayOfWeek == DayOfWeek.Saturday || startDateOffset.Value.LocalDateTime.DayOfWeek == DayOfWeek.Sunday
+            IsWeekend = startDateOffset.Value.DayOfWeek == DayOfWeek.Saturday || startDateOffset.Value.DayOfWeek == DayOfWeek.Sunday
         };
     }
 }
