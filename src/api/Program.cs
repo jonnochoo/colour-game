@@ -88,6 +88,7 @@ app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new Bootstrap
 app.MapGet("/google-calendar", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()));
 app.MapGet("/trello/abigail", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
 app.MapGet("/trello/elijah", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
+app.MapGet("/trello/todos", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<GetTodoListResponseItem[]>(new GetTodoListRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
 
