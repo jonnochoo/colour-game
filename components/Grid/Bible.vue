@@ -26,7 +26,10 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error, refresh } = await useFetch(`/api/bible`)
+const config = useRuntimeConfig()
+const { data, pending, error, refresh } = await useFetch(`/bible`, {
+    baseURL: config.public.baseUrl,
+})
 
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(30))

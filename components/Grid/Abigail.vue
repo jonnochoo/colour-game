@@ -8,7 +8,7 @@
                     Abigail
                 </p>
                 <p>
-                    {{ data.text }}
+                    {{ data.name }}
                 </p>
             </div>
         </ClientOnly>
@@ -16,8 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error, refresh } = await useFetch(`/api/abigail`)
-
+const config = useRuntimeConfig()
+const { data, pending, error, refresh } = await useFetch(`/trello/abigail`, {
+    baseURL: config.public.baseUrl,
+})
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))
 })

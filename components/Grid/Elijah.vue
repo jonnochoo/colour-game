@@ -6,7 +6,7 @@
             <div v-else>
                 <p class="mb-6 font-bold text-blue-400 lg:text-4xl">Elijah</p>
                 <p>
-                    {{ data.text }}
+                    {{ data.name }}
                 </p>
             </div>
         </ClientOnly>
@@ -14,7 +14,10 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error, refresh } = await useFetch(`/api/elijah`)
+const config = useRuntimeConfig()
+const { data, pending, error, refresh } = await useFetch(`/trello/elijah`, {
+    baseURL: config.public.baseUrl,
+})
 
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))
