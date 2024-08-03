@@ -4,11 +4,11 @@
         <div v-else-if="pending"><GridPending /></div>
         <div v-else>
             <ClientOnly>
-                <p class="text-my-green mb-6 text-4xl font-bold">Calendar</p>
+                <p class="mb-6 text-4xl font-bold text-my-green">Calendar</p>
                 <ul class="lg:text-3xl">
                     <li
                         class="mb-4 flex gap-6"
-                        v-for="$event in data.events
+                        v-for="$event in data
                             ?.filter(
                                 (x) =>
                                     x.summary !== 'SCHOOL HOLIDAYS' &&
@@ -22,20 +22,10 @@
                         <span
                             class="w-[270px] border-r-4"
                             :class="{
-                                'border-pink-500':
-                                    formatDate($event.start).includes('Sat') ||
-                                    formatDate($event.start).includes('Sun'),
-                                'border-purple-500':
-                                    !formatDate($event.start).includes('Sat') &&
-                                    !formatDate($event.start).includes('Sun') &&
-                                    !formatDate($event.start).includes(
-                                        format(new Date(), 'EEE')
-                                    ),
-                                'border-green-500': formatDate(
-                                    $event.start
-                                ).includes(format(new Date(), 'EEE')),
+                                'border-pink-500': $event.isWeekend,
+                                'border-purple-500': !$event.isWeekend,
                             }"
-                            >{{ formatDate($event.start) }}</span
+                            >{{ formatDate($event) }}</span
                         >
                         <span class="w-[440px] truncate">{{
                             $event.summary
@@ -48,14 +38,15 @@
 </template>
 
 <script lang="ts" setup>
-import { format, parseISO, parse } from 'date-fns'
-const { data, pending, error, refresh } = await useFetch(`/api/calendar`)
+import { format, parseISO } from 'date-fns'
+const { data, pending, error, refresh } = await useFetch(
+    `http://192.168.86.32:5000/google-calendar`
+)
 
-const formatDate = (d) => {
-    if (d.date) {
-        return format(parse(d.date, 'yyyy-MM-dd', new Date()), 'EEE, dd MMM')
-    }
-    return format(parseISO(d.dateTime), 'EEE, dd MMM H:mm')
+const formatDate = ($event) => {
+    return $event.isAllDay
+        ? format(parseISO($event.startDateOffset), 'EEE, dd MMM')
+        : format(parseISO($event.startDateOffset), 'EEE, dd MMM H:mm')
 }
 
 onMounted(() => {

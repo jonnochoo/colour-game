@@ -19,6 +19,65 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
             //TODO: Figure out a better to do error handling.
             throw new InvalidOperationException(response.StatusCode.ToString());
         }
-        return await response.GetJsonAsync<object>();
+
+        var tomorrowWeatherResponse = await response.GetJsonAsync<TomorrowWeatherResponse>();
+        var currentInfo = tomorrowWeatherResponse.Timelines.Minutely[0].Values;
+        var todayInfo = tomorrowWeatherResponse.Timelines.Daily[0].Values;
+
+        return new GetTomorrowWeatherResponse
+        {
+            WeatherCode = currentInfo.WeatherCode,
+            TemperatureCurrent = currentInfo.Temperature,
+            WindspeedCurrent = currentInfo.WindSpeed,
+            HumidityCurrent = currentInfo.Humidity,
+            UVIndex = currentInfo.UVIndex,
+            TemperatureMin = todayInfo.TemperatureMin,
+            TemperatureMax = todayInfo.TemperatureMax,
+            SunriseTime = todayInfo.SunriseTime,
+            SunsetTime = todayInfo.SunsetTime,
+        };
     }
+}
+
+// See .Sample/tomorrow.json for the payload
+// https://docs.tomorrow.io/reference/data-layers-core
+internal record TomorrowWeatherResponse
+{
+    public required Timelines Timelines { get; init; }
+}
+
+internal record Timelines
+{
+    public required WeatherMinute[] Minutely { get; init; } = [];
+    public required WeatherDaily[] Daily { get; init; } = [];
+}
+
+internal record WeatherMinute
+{
+    public required DateTimeOffset Time { get; init; }
+    public required WeatherMinuteValue Values { get; init; }
+}
+
+internal record WeatherDaily
+{
+    public required DateTimeOffset Time { get; init; }
+    public required WeatherDailyValue Values { get; init; }
+}
+
+internal record WeatherMinuteValue
+{
+    public required double Humidity { get; init; }
+    public required double Temperature { get; init; }
+    public required double PrecipitationProbability { get; init; }
+    public required int WeatherCode { get; init; }
+    public required double WindSpeed { get; init; }
+    public required int UVIndex { get; init; }
+}
+
+internal record WeatherDailyValue
+{
+    public required double TemperatureMax { get; init; }
+    public required double TemperatureMin { get; init; }
+    public required DateTimeOffset SunriseTime { get; init; }
+    public required DateTimeOffset SunsetTime { get; init; }
 }
