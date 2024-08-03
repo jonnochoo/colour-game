@@ -4,7 +4,9 @@
         <div v-else-if="error">{{ error }}</div>
         <div v-else>
             <ClientOnly>
-                <h2 class="mb-6 text-4xl font-bold text-my-aqua">🗒️Notes</h2>
+                <h2 class="mb-6 text-4xl font-bold text-my-aqua">
+                    Think About...
+                </h2>
                 <p>{{ note.text }}</p>
             </ClientOnly>
         </div>
