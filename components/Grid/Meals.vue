@@ -17,7 +17,7 @@
                                     meal.dayOfWeek !== 0 &&
                                     meal.dayOfWeek !== 6,
                             }"
-                            >{{ meal.dayOfWeek }}</span
+                            >{{ formatDayOfWeek(meal.dayOfWeek) }}</span
                         >
                         <span> {{ meal.name }}</span>
                     </li>
@@ -32,6 +32,25 @@ const config = useRuntimeConfig()
 const { data, error, refresh, pending } = await useFetch(`/trello/meals`, {
     baseURL: config.public.baseUrl,
 })
+
+const formatDayOfWeek = (dayOfWeek: number) => {
+    switch (dayOfWeek) {
+        case 0:
+            return 'Sun'
+        case 1:
+            return 'Mon'
+        case 2:
+            return 'Tue'
+        case 3:
+            return 'Wed'
+        case 4:
+            return 'Thu'
+        case 5:
+            return 'Fri'
+        case 6:
+            return 'Sat'
+    }
+}
 
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))
