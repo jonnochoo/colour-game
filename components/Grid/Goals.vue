@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 const config = useRuntimeConfig()
-const { data, pending, error, refresh } = await useFetch(`/trello/meals`, {
+const { data, pending, error, refresh } = await useFetch(`/trello/todos`, {
     baseURL: config.public.baseUrl,
 })
 
