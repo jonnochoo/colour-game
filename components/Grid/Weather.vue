@@ -48,8 +48,9 @@
                         </div>
                         <div>
                         Sunset:   {{ format(parseISO(data.sunsetTime), 'h:mm a') }}
+                        </div>
                     </div>
-                    </div></div>
+                </div>
                 </p>
                 <div class="flex gap-3 text-2xl">
                     <div class="text-[#f87359]">
@@ -73,8 +74,11 @@
 
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns'
+const config = useRuntimeConfig()
 const { data, pending, error, refresh } = await useFetch(
-    `https://jonno-pi.tail88a240.ts.net/weather`
+    `weather`, {
+    baseURL: config.public.baseUrl,
+}
 )
 
 onMounted(() => {

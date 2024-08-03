@@ -37,5 +37,8 @@ export default defineNuxtConfig({
         trelloToken: '',
         googleCalendarServiceAccountEmail: '',
         googleCalendarPrivateKey: '',
+        public: {
+            baseUrl: 'http://192.168.86.32:5000',
+        },
     },
 })
