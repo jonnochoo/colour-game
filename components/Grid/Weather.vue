@@ -45,7 +45,7 @@
                         Max: {{ Math.round(data.temperatureMax) }}°</p>
                         <div>
                         Sunrise:  {{ format(parseISO(data.sunriseTime), 'h:mm a') }}
-                        </div>div>
+                        </div>
                         <div>
                         Sunset:   {{ format(parseISO(data.sunsetTime), 'h:mm a') }}
                     </div>
