@@ -27,4 +27,5 @@ public record GetTomorrowWeatherResponse
     }
     public required double WindspeedCurrent { get; init; }
     public required int WeatherCode { get; init; }
+    public required double PrecipitationProbabilityAvg { get; init; }
 }

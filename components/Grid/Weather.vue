@@ -56,7 +56,7 @@
                         Humidity: {{ data.humidityCurrent }}%
                     </div>
                     <div class="text-[#4dceb0]">
-                        Rain: {{ data.rainIntensity }}mm/hr
+                        Rain: {{ data.precipitationProbabilityAvg }}%
                     </div>
                     <div class="text-[#fceb3c]">
                         UV: {{ data.uvIndexConcern }}
