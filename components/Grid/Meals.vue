@@ -11,11 +11,11 @@
                             class="w-24 border-r-4 pr-2"
                             :class="{
                                 'border-pink-500':
-                                    meal.dayOfWeek === 'Sun' ||
-                                    meal.dayOfWeek === 'Sat',
+                                    meal.dayOfWeek === 0 ||
+                                    meal.dayOfWeek === 6,
                                 'border-purple-500':
-                                    meal.dayOfWeek !== 'Sun' &&
-                                    meal.dayOfWeek !== 'Sat',
+                                    meal.dayOfWeek !== 0 &&
+                                    meal.dayOfWeek !== 6,
                             }"
                             >{{ meal.dayOfWeek }}</span
                         >
