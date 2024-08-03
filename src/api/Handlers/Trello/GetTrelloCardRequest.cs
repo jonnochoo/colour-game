@@ -12,4 +12,9 @@ public record GetTrelloCardRequest
     {
         return new GetTrelloCardRequest { CardId = "6698f157ecbacd29624830dc" };
     }
+
+    public static GetTrelloCardRequest ForThink()
+    {
+        return new GetTrelloCardRequest { CardId = "6699104c02a515737b8e53ba" };
+    }
 }
