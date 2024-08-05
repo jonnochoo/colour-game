@@ -2,15 +2,18 @@
     <div class="z-10">
         <header class="flex justify-between">
             <div>
-                <h1 class="font-[lexend] text-2xl text-white lg:text-6xl">
-                    🏏 The Choo Family Dashboard
+                <h1
+                    class="cursor-pointer font-[lexend] text-2xl text-white lg:text-6xl"
+                    @click="toggle"
+                >
+                    <span v-if="!isFullscreen">🏏</span>
+                    <span class="text-gray-700" v-else>🏏</span> The Choo Family
+                    Dashboard
                 </h1>
+                <button class="mt-4 text-gray-400"></button>
             </div>
             <div>
-                <button @click="toggle" class="mt-4 text-gray-400">
-                    <span v-if="!isFullscreen">Go Full Screen</span>
-                    <span class="text-gray-700" v-else>Exit Full Screen</span>
-                </button>
+                <GridBin />
             </div>
         </header>
         <div class="mt-8 grid gap-6 lg:grid-cols-3">

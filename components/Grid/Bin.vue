@@ -1,15 +1,17 @@
 <template>
     <ClientOnly>
-        <div class="text-center text-white">
-            <h2 class="mb-4 text-5xl">Which Bin Should We Put Out?</h2>
-            <div>{{ data.type }}</div>
-            <div>{{ data?.collectionDate }}</div>
+        <div class="mr-4 mt-5 text-center text-xl text-white">
+            <div>
+                <span v-if="data?.type == 'Yellow Bin'">🟡</span>
+                <span v-else="">🟢</span>
+                This week is {{ data.type }}
+            </div>
         </div>
     </ClientOnly>
 </template>
 
 <script setup lang="ts">
-import { format, parse, differenceInDays } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 const { data, error } = await useFetch(
     'https://apps.thehills.nsw.gov.au/seamlessproxy/api/services/263787',
@@ -17,15 +19,11 @@ const { data, error } = await useFetch(
         transform: (data) => {
             const organics = data.find((x) => x.Name === 'Garden Organics')
             const recycling = data.find((x) => x.Name === 'Recycling')
-            const organicsNextCollectionDay = parse(
-                organics.CollectionDays[0].substring(0, 10),
-                'yyyy-MM-dd',
-                new Date()
+            const organicsNextCollectionDay = parseISO(
+                organics.CollectionDays[0]
             )
-            const recyclingNextCollectionDay = parse(
-                recycling.CollectionDays[0].substring(0, 10),
-                'yyyy-MM-dd',
-                new Date()
+            const recyclingNextCollectionDay = parseISO(
+                recycling.CollectionDays[0]
             )
             if (organicsNextCollectionDay < recyclingNextCollectionDay) {
                 return {
