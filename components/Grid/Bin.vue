@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { format, parseISO } from 'date-fns'
 
-const { data, error } = await useFetch(
+const { data, refresh, error } = await useFetch(
     'https://apps.thehills.nsw.gov.au/seamlessproxy/api/services/263787',
     {
         transform: (data) => {
@@ -47,4 +47,8 @@ const { data, error } = await useFetch(
         },
     }
 )
+
+onMounted(() => {
+    setInterval(refresh, Milliseconds.FromHours(3))
+})
 </script>
