@@ -1,14 +1,11 @@
+using Api.Handlers.Weather.Tomorrow;
+
 namespace api.Handlers;
 
 public record GetTomorrowWeatherResponse
 {
     public required double HumidityCurrent { get; init; }
-
-    public required DateTimeOffset SunsetTime { get; init; }
-    public required DateTimeOffset SunriseTime { get; init; }
     public required double TemperatureCurrent { get; init; }
-    public required double TemperatureMax { get; init; }
-    public required double TemperatureMin { get; init; }
     public required int UVIndex { get; init; }
     public string UVIndexConcern
     {
@@ -27,5 +24,7 @@ public record GetTomorrowWeatherResponse
     }
     public required double WindspeedCurrent { get; init; }
     public required int WeatherCode { get; init; }
-    public required double PrecipitationProbabilityAvg { get; init; }
+    public required WeatherDailyValue Today { get; init; }
+    public required WeatherDailyValue Tomorrow { get; init; }
+    public required WeatherDailyValue InTwoDays { get; init; }
 }

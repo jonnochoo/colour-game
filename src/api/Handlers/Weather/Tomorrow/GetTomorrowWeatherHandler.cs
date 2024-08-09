@@ -23,6 +23,8 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
         var tomorrowWeatherResponse = await response.GetJsonAsync<TomorrowWeatherResponse>();
         var currentInfo = tomorrowWeatherResponse.Timelines.Minutely[0].Values;
         var todayInfo = tomorrowWeatherResponse.Timelines.Daily[0].Values;
+        var tomorrowInfo = tomorrowWeatherResponse.Timelines.Daily[1].Values;
+        var inTwoDaysInfo = tomorrowWeatherResponse.Timelines.Daily[2].Values;
 
         return new GetTomorrowWeatherResponse
         {
@@ -31,11 +33,9 @@ public class GetTomorrowWeatherHandler : IWolverineHandler
             WindspeedCurrent = currentInfo.WindSpeed,
             HumidityCurrent = currentInfo.Humidity,
             UVIndex = currentInfo.UVIndex,
-            TemperatureMin = todayInfo.TemperatureMin,
-            TemperatureMax = todayInfo.TemperatureMax,
-            SunriseTime = todayInfo.SunriseTime,
-            SunsetTime = todayInfo.SunsetTime,
-            PrecipitationProbabilityAvg = todayInfo.PrecipitationProbabilityAvg,
+            Today = todayInfo,
+            Tomorrow = tomorrowInfo,
+            InTwoDays = inTwoDaysInfo,
         };
     }
 }
@@ -73,13 +73,4 @@ internal record WeatherMinuteValue
     public required int WeatherCode { get; init; }
     public required double WindSpeed { get; init; }
     public required int UVIndex { get; init; }
-}
-
-internal record WeatherDailyValue
-{
-    public required double TemperatureMax { get; init; }
-    public required double TemperatureMin { get; init; }
-    public required double PrecipitationProbabilityAvg { get; init; }
-    public required DateTimeOffset SunriseTime { get; init; }
-    public required DateTimeOffset SunsetTime { get; init; }
 }
