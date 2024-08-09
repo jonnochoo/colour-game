@@ -24,8 +24,16 @@
             <GridMeals />
             <GridCalendar />
             <GridGoals />
-            <GridCountdown />
-            <GridAbigail />
+            <GridCountdown
+                title="Countdown until Year 4 camp"
+                color="text-blue-400"
+                :countdownDate="new Date('2024-08-21')"
+            />
+            <GridCountdown
+                title="Countdown until Dance Recital"
+                color="text-violet-400"
+                :countdownDate="new Date('2024-08-29')"
+            />
             <GridCountry />
         </div>
     </div>
