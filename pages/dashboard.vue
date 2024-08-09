@@ -24,7 +24,7 @@
             <GridMeals />
             <GridCalendar />
             <GridGoals />
-            <GridElijah />
+            <GridCountdown />
             <GridAbigail />
             <GridCountry />
         </div>

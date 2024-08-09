@@ -100,14 +100,18 @@ app.UseOutputCache();
 
 return await app.RunOaktonCommands(args);
 
+// Add auth
 // Add SignalR (push to update)
 // Alba style testing
 // Update prod for Wolverine
 // Deploy
 // Add Spotify integration
 // Think about how we can do better integration with caching layer
-// Add auth
-// Integrate with Nuxt to C# Api
 // NWAG
 // Bookmarks of links
 // Joshua project https://joshuaproject.net/resources/datasets
+// .Net Aspire
+// Countdown
+// Think quotes
+// Chores
+// https://devhints.io/
