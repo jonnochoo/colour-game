@@ -20,9 +20,11 @@ public class GetMealsRequestHandler : IWolverineHandler
             .Select(x =>
             {
                 var splitText = x.Name.Split(":");
-                x.Name = splitText[1];
-                x.DayOfWeek = GetDateOfWeek(splitText[0]);
-                return x;
+                return x with
+                {
+                    Name = splitText[1],
+                    DayOfWeek = GetDateOfWeek(splitText[0])
+                };
             });
 
         return newItems.ToArray();

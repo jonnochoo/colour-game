@@ -18,5 +18,5 @@ public class GetTodoListHandler : IWolverineHandler
 
 public record GetTodoListResponseItem
 {
-    public string Name { get; set; }
+    public require string Name { get; init; }
 }

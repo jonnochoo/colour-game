@@ -14,7 +14,7 @@ public class GetBibleVerseOfTheDayHandler : IWolverineHandler
         var doc = new XmlDocument();
         doc.LoadXml(xmlContent);
 
-        XmlNode contentNode = doc.SelectSingleNode("/rss/channel/item");
+        XmlNode? contentNode = doc.SelectSingleNode("/rss/channel/item");
         if (contentNode != null)
         {
             string verse = contentNode.ChildNodes[0].InnerText;

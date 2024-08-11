@@ -10,11 +10,15 @@ using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 using Oakton;
 using Serilog;
+using Serilog.Events;
 using SignalRChat.Hubs;
 using Wolverine;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.Extensions.Hosting", LogEventLevel.Information)
+    .MinimumLevel.Override("Microsoft.Hosting", LogEventLevel.Information)
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -115,3 +119,5 @@ return await app.RunOaktonCommands(args);
 // Think quotes
 // Chores
 // https://devhints.io/
+// https://haacked.com/archive/2024/07/01/dotnet-aspire-vs-docker/
+// https://github.com/piratefsh/js-motion-detector

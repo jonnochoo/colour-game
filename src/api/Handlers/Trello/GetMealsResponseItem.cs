@@ -2,6 +2,6 @@ namespace api.Handlers.Trello;
 
 public record GetMealsResponseItem
 {
-    public string Name { get; set; }
-    public DayOfWeek DayOfWeek { get; set; }
+    public required string Name { get; init; }
+    public required DayOfWeek DayOfWeek { get; init; }
 }
