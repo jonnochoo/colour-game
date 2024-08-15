@@ -4,6 +4,7 @@ using api.Handlers.GoogleCalendar;
 using api.Handlers.Trello;
 using Api.Bootstrap.Cache;
 using Api.Bootstrap.Options;
+using Api.Handlers.Chore;
 using Api.Handlers.Weather.Tomorrow;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.OutputCaching;
@@ -104,6 +105,8 @@ app.MapGet("/trello/todos", [OutputCache] async (IMessageBus bus) => await bus.I
 app.MapGet("/trello/meals", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<GetMealsResponseItem[]>(new GetMealsRequest()));
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
+
+app.MapPost("/chore", async (CreateChoreTemplateRequest request, IMessageBus bus) => await bus.InvokeAsync(request));
 
 app.MapHub<DashboardHub>("/hubs/dashboard");
 
