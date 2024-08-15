@@ -8,6 +8,7 @@ using Api.Handlers.Weather.Tomorrow;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Oakton;
 using Serilog;
 using Serilog.Events;
@@ -22,10 +23,13 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlite("Data Source=app.db"));
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
 
 // Configure security
-builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services
+    .AddIdentityApiEndpoints<User>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication();
 builder.Services.AddCors(options =>
@@ -38,6 +42,9 @@ builder.Services.AddCors(options =>
                 policy.AllowAnyMethod();
             });
 });
+// builder.Services.ConfigureAll<BearerTokenOptions>(option => {
+//     option.BearerTokenExpiration = TimeSpan.FromMinutes(1);
+// })
 
 // Add infrastructure
 builder.Services.AddSerilog();
@@ -89,7 +96,7 @@ app.MapGet("/", () => "OK");
 app.MapGet("/auth", () => "OK").RequireAuthorization();
 app.MapGet("/bible", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()));
 app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new BootstrapDatabaseRequest()));
-app.MapGet("/google-calendar", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()));
+app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest())).CacheOutput();
 app.MapGet("/trello/abigail", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
 app.MapGet("/trello/elijah", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
 app.MapGet("/trello/think", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForThink()));
