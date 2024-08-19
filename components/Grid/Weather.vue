@@ -38,7 +38,7 @@
                     </div>
                     <!-- Temp -->
                     <span class="ml-4">
-                        {{ Math.round(data.temperatureCurrent) }}°
+                        {{ data.temperatureCurrent.toFixed(1) }}°
                     </span>
                     <div class="text-2xl flex-grow text-right">                        
                         <p>Min: {{ Math.round(data.temperatureMin) }}°

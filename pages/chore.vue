@@ -1,7 +1,7 @@
 <template>
     <header class="flex p-4 lg:mt-12 lg:px-32">
         <h1 class="flex-grow text-4xl font-extrabold text-white">
-            Family Chores
+            <RouterLink to="dashboard">🏏</RouterLink>Family Chores
         </h1>
         <div>
             <select class="rounded-md p-2" v-model="category">
@@ -23,7 +23,7 @@ import { getHours } from 'date-fns'
 const { data, refresh } = await useFetch<ChoreList[]>('/api/chores')
 const category = ref('morning')
 definePageMeta({
-    layout: 'chore',
+    layout: 'dashboard',
 })
 onMounted(() => {
     // setCategoryBasedOnTimeOfDay()
@@ -42,4 +42,8 @@ function setCategoryBasedOnTimeOfDay() {
 }
 </script>
 
-<style></style>
+<style>
+body {
+    background-color: #1b1428;
+}
+</style>

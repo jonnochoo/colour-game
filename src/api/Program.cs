@@ -132,3 +132,4 @@ return await app.RunOaktonCommands(args);
 // https://devhints.io/
 // https://haacked.com/archive/2024/07/01/dotnet-aspire-vs-docker/
 // https://github.com/piratefsh/js-motion-detector
+//  Whisper for speech-to-text
