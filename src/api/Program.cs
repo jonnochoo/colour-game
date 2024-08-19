@@ -15,6 +15,7 @@ using Serilog;
 using Serilog.Events;
 using SignalRChat.Hubs;
 using Wolverine;
+using Wolverine.Http;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -106,7 +107,7 @@ app.MapGet("/trello/meals", [OutputCache] async (IMessageBus bus) => await bus.I
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
 
-app.MapPost("/chore", async (CreateChoreTemplateRequest request, IMessageBus bus) => await bus.InvokeAsync(request));
+app.MapPostToWolverine<CreateChoreTemplateRequest, Guid>("/chore");
 
 app.MapHub<DashboardHub>("/hubs/dashboard");
 

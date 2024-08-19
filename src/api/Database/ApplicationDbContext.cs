@@ -14,19 +14,47 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<ChoreTemplate>();
+        base.OnModelCreating(builder);
+
+        // Person
+        builder.Entity<Person>()
+            .HasKey(x => x.Id);
         builder.Entity<Person>()
             .HasMany<ChoreTemplate>()
             .WithOne(e => e.Person)
             .IsRequired(false);
         builder.Entity<Person>()
             .HasData([
-                new Person { Id = Guid.NewGuid(), Name = "Elijah" },
-                    new Person { Id = Guid.NewGuid(), Name = "Abigail" }
+                new Person { Id = 1, Name = "Elijah" },
+                new Person { Id = 2, Name = "Abigail" }
             ]);
 
+        // Chore Template
+        builder.Entity<ChoreTemplate>();
+        builder.Entity<ChoreTemplate>()
+            .HasKey(x => x.Id);
+        builder.Entity<ChoreTemplate>()
+            .Property(x => x.Summary)
+            .IsRequired();
 
-        base.OnModelCreating(builder);
+        // Elijah
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = 1,
+                Summary = "Brush Teeth",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning, TimeOfDay.Evening]
+            });
+
+        // Abigail
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = 2,
+                Summary = "Brush Teeth",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning, TimeOfDay.Evening]
+            });
     }
-
 }
