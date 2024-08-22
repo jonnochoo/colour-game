@@ -17,9 +17,12 @@
 
 <script lang="ts" setup>
 const config = useRuntimeConfig()
-const { data, pending, error, refresh } = await useFetch(`/trello/abigail`, {
-    baseURL: config.public.baseUrl,
-})
+const { data, pending, error, refresh } = await useLazyFetch(
+    `/trello/abigail`,
+    {
+        baseURL: config.public.baseUrl,
+    }
+)
 onMounted(() => {
     setInterval(refresh, Milliseconds.FromMinutes(15))
 })

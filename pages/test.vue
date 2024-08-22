@@ -66,7 +66,7 @@
 </template>
 <script setup lang="ts">
 const headers = useRequestHeaders(['.AspNetCore.Identity.Application'])
-const { data: responseData, refresh: login } = await useFetch(
+const { data: responseData, refresh: login } = await useLazyFetch(
     'http://localhost:5230/login?useCookies=false',
     {
         headers,
@@ -82,7 +82,7 @@ const { data: responseData, refresh: login } = await useFetch(
         },
     }
 )
-const { data, pending, error, refresh } = await useFetch(
+const { data, pending, error, refresh } = await useLazyFetch(
     `http://localhost:5230/test`,
     {
         headers: {

@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { format, parseISO } from 'date-fns'
 
-const { data, refresh, error } = await useFetch(
+const { data, refresh, error } = await useLazyFetch(
     'https://apps.thehills.nsw.gov.au/seamlessproxy/api/services/263787',
     {
         transform: (data) => {

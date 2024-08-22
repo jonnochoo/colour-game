@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 const config = useRuntimeConfig()
-const { data, pending, error, refresh } = await useFetch(`/bible`, {
+const { data, pending, error, refresh } = await useLazyFetch(`/bible`, {
     baseURL: config.public.baseUrl,
 })
 

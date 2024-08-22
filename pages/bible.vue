@@ -71,7 +71,7 @@ const passageDialog = ref<HTMLDialogElement>()
 
 const passageToInput = ref('')
 const passageToSearch = ref('Matthew 7:24-25')
-const { data, pending, error, refresh } = await useFetch(`/api/verse`, {
+const { data, pending, error, refresh } = await useLazyFetch(`/api/verse`, {
     query: { passage: passageToSearch },
 })
 

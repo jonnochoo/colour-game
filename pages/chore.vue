@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import type { ChoreList } from '~/types'
 import { getHours } from 'date-fns'
-const { data, refresh } = await useFetch<ChoreList[]>('/api/chores')
+const { data, refresh } = await useLazyFetch<ChoreList[]>('/api/chores')
 const category = ref('morning')
 definePageMeta({
     layout: 'dashboard',

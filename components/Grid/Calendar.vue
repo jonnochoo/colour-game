@@ -40,9 +40,12 @@
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns'
 const config = useRuntimeConfig()
-const { data, pending, error, refresh } = await useFetch(`google-calendar`, {
-    baseURL: config.public.baseUrl,
-})
+const { data, pending, error, refresh } = await useLazyFetch(
+    `google-calendar`,
+    {
+        baseURL: config.public.baseUrl,
+    }
+)
 
 const formatDate = ($event) => {
     return $event.isAllDay

@@ -75,7 +75,7 @@
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns'
 const config = useRuntimeConfig()
-const { data, pending, error, refresh } = await useFetch(
+const { data, pending, error, refresh } = await useLazyFetch(
     `weather`, {
     baseURL: config.public.baseUrl,
 })

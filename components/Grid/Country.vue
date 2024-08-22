@@ -32,5 +32,5 @@
 </template>
 
 <script lang="ts" setup>
-const { data, pending, error, refresh } = await useFetch(`/api/country`)
+const { data, pending, error, refresh } = await useLazyFetch(`/api/country`)
 </script>
