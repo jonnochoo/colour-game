@@ -66,6 +66,7 @@
                         Wind:
                         {{ data.windspeedCurrent }}
                     </div>
+
                 </div>
             </ClientOnly>
         </div>

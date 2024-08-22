@@ -1,5 +1,5 @@
 <template>
-    <div class="margin-auto container">
+    <div class="margin-auto container" @submit="login">
         <form>
             <div class="mb-4">
                 <label
@@ -40,12 +40,13 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig()
 definePageMeta({
     layout: 'dashboard',
 })
 
-const login = () => {
-    $fetch('/login')
+const login = async () => {
+    await $fetch('login', { baseURL: config.public.baseUrl })
 }
 </script>
 

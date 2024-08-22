@@ -78,6 +78,7 @@
 </template>
 
 <script setup lang="ts">
+import { GridAbigail } from '#build/components';
 import { useFullscreen } from '@vueuse/core'
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen()
