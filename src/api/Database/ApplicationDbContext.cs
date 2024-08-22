@@ -25,8 +25,8 @@ public class ApplicationDbContext : IdentityDbContext<User>
             .IsRequired(false);
         builder.Entity<Person>()
             .HasData([
-                new Person { Id = 1, Name = "Elijah" },
-                new Person { Id = 2, Name = "Abigail" }
+                new Person { Id = PersonIds.Elijah, Name = "Elijah" },
+                new Person { Id = PersonIds.Abigail, Name = "Abigail" }
             ]);
 
         // Chore Template
@@ -41,20 +41,84 @@ public class ApplicationDbContext : IdentityDbContext<User>
         builder.Entity<ChoreTemplate>()
             .HasData(new ChoreTemplate
             {
-                PersonId = 1,
+                PersonId = PersonIds.Elijah,
                 Summary = "Brush Teeth",
                 DaysOfWeek = DayOfWeeks.AllDays,
                 TimeOfDays = [TimeOfDay.Morning, TimeOfDay.Evening]
             });
-
-        // Abigail
         builder.Entity<ChoreTemplate>()
             .HasData(new ChoreTemplate
             {
-                PersonId = 2,
+                PersonId = PersonIds.Elijah,
+                Summary = "Get changed out of PJs",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+
+        this.AddRegularChores(builder, PersonIds.Elijah);
+        this.AddRegularChores(builder, PersonIds.Abigail);
+    }
+
+    private void AddRegularChores(ModelBuilder builder, int personId)
+    {
+
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
                 Summary = "Brush Teeth",
                 DaysOfWeek = DayOfWeeks.AllDays,
                 TimeOfDays = [TimeOfDay.Morning, TimeOfDay.Evening]
+            });
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Turn off lights, fans and open blinds",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Get changed out of PJs",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Eat breakfast",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Put breakfast dishes away in dishwasher",
+                DaysOfWeek = DayOfWeeks.AllDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+
+        // School day chores
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Find hat, jacket, socks and shoes",
+                DaysOfWeek = DayOfWeeks.WeekDays,
+                TimeOfDays = [TimeOfDay.Morning]
+            });
+        builder.Entity<ChoreTemplate>()
+            .HasData(new ChoreTemplate
+            {
+                PersonId = personId,
+                Summary = "Pack school bag",
+                DaysOfWeek = DayOfWeeks.WeekDays,
+                TimeOfDays = [TimeOfDay.Morning]
             });
     }
 }
