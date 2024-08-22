@@ -9,7 +9,6 @@ export default defineNuxtConfig({
         '@nuxt/test-utils/module',
         '@nuxtjs/google-fonts',
         '@nuxtjs/tailwindcss',
-        'nuxt-monaco-editor',
         '@pinia/nuxt',
     ],
     tailwindcss: {
