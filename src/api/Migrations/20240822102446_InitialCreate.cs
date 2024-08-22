@@ -56,27 +56,22 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChoreTemplates",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChoreTemplates", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    PersonId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_People_People_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "People",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -185,13 +180,42 @@ namespace api.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ChoreTemplates",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    PersonId = table.Column<int>(type: "integer", nullable: false),
+                    Summary = table.Column<string>(type: "text", nullable: false),
+                    DaysOfWeek = table.Column<int[]>(type: "integer[]", nullable: false),
+                    TimeOfDays = table.Column<int[]>(type: "integer[]", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChoreTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChoreTemplates_People_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "People",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "People",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "PersonId" },
                 values: new object[,]
                 {
-                    { new Guid("6af16a91-000f-470c-882b-b7ba4471171b"), "Abigail" },
-                    { new Guid("acc37077-4745-437d-a80a-99e6bc6ac3cd"), "Elijah" }
+                    { 1, "Elijah", null },
+                    { 2, "Abigail", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ChoreTemplates",
+                columns: new[] { "Id", "DaysOfWeek", "PersonId", "Summary", "TimeOfDays" },
+                values: new object[,]
+                {
+                    { new Guid("b0cfa57c-31cb-4c6b-aaed-87d9e6427550"), new[] { 1, 2, 3, 4, 5, 6, 0 }, 1, "Brush Teeth", new[] { 0, 2 } },
+                    { new Guid("e9aecd3f-0acb-4848-9feb-05d9a5fa2f74"), new[] { 1, 2, 3, 4, 5, 6, 0 }, 2, "Brush Teeth", new[] { 0, 2 } }
                 });
 
             migrationBuilder.CreateIndex(
@@ -230,6 +254,16 @@ namespace api.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChoreTemplates_PersonId",
+                table: "ChoreTemplates",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_People_PersonId",
+                table: "People",
+                column: "PersonId");
         }
 
         /// <inheritdoc />
@@ -254,13 +288,13 @@ namespace api.Migrations
                 name: "ChoreTemplates");
 
             migrationBuilder.DropTable(
-                name: "People");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "People");
         }
     }
 }

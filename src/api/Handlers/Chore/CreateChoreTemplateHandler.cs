@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace Api.Handlers.Chore;
 
 public class CreateChoreTemplateHandler
@@ -19,19 +17,5 @@ public class CreateChoreTemplateHandler
         await dbContext.SaveChangesAsync();
 
         return result.Entity.Id;
-    }
-}
-
-public class GetAbgailChoresHandler
-{
-    public async Task<ChoreTemplate[]> Handle(CreateChoreTemplateRequest request, ApplicationDbContext dbContext)
-    {
-        // TODO: Check if the person id exist
-
-        var result = await dbContext.ChoreTemplates.Where(x => x.PersonId == 1).ToArrayAsync();
-
-        await dbContext.SaveChangesAsync();
-
-        return result;
     }
 }

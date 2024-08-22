@@ -108,6 +108,7 @@ app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfy
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
 
 app.MapPostToWolverine<CreateChoreTemplateRequest, Guid>("/chore");
+app.MapGet("/chore/abigail", async (IMessageBus bus) => await bus.InvokeAsync<ChoreTemplate[]>(new GetAbgailChoresRequest()));
 
 app.MapHub<DashboardHub>("/hubs/dashboard");
 

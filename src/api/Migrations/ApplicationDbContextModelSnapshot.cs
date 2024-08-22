@@ -31,8 +31,8 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Summary")
                         .IsRequired()
@@ -47,6 +47,24 @@ namespace api.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("ChoreTemplates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b0cfa57c-31cb-4c6b-aaed-87d9e6427550"),
+                            DaysOfWeek = new[] { 1, 2, 3, 4, 5, 6, 0 },
+                            PersonId = 1,
+                            Summary = "Brush Teeth",
+                            TimeOfDays = new[] { 0, 2 }
+                        },
+                        new
+                        {
+                            Id = new Guid("e9aecd3f-0acb-4848-9feb-05d9a5fa2f74"),
+                            DaysOfWeek = new[] { 1, 2, 3, 4, 5, 6, 0 },
+                            PersonId = 2,
+                            Summary = "Brush Teeth",
+                            TimeOfDays = new[] { 0, 2 }
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -183,16 +201,18 @@ namespace api.Migrations
 
             modelBuilder.Entity("Person", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -203,12 +223,12 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e48293e3-7bdb-4c12-a2b0-3f04f4cb8a1a"),
+                            Id = 1,
                             Name = "Elijah"
                         },
                         new
                         {
-                            Id = new Guid("5d778dd6-97cd-4234-8259-be2f96769587"),
+                            Id = 2,
                             Name = "Abigail"
                         });
                 });

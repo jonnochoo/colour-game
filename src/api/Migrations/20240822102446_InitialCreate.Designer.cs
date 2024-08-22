@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240815104507_Update1")]
-    partial class Update1
+    [Migration("20240822102446_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,18 +34,40 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Summary")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int[]>("TimeOfDays")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId");
 
                     b.ToTable("ChoreTemplates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b0cfa57c-31cb-4c6b-aaed-87d9e6427550"),
+                            DaysOfWeek = new[] { 1, 2, 3, 4, 5, 6, 0 },
+                            PersonId = 1,
+                            Summary = "Brush Teeth",
+                            TimeOfDays = new[] { 0, 2 }
+                        },
+                        new
+                        {
+                            Id = new Guid("e9aecd3f-0acb-4848-9feb-05d9a5fa2f74"),
+                            DaysOfWeek = new[] { 1, 2, 3, 4, 5, 6, 0 },
+                            PersonId = 2,
+                            Summary = "Brush Teeth",
+                            TimeOfDays = new[] { 0, 2 }
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -182,16 +204,18 @@ namespace api.Migrations
 
             modelBuilder.Entity("Person", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uuid");
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -202,12 +226,12 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7209e18e-8682-4258-aced-efa43f6ae6d0"),
+                            Id = 1,
                             Name = "Elijah"
                         },
                         new
                         {
-                            Id = new Guid("454263da-4782-4d99-91f6-647e081bfe83"),
+                            Id = 2,
                             Name = "Abigail"
                         });
                 });
