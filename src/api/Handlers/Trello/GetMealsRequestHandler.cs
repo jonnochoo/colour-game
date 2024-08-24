@@ -14,6 +14,9 @@ public class GetMealsRequestHandler : IWolverineHandler
         string listId = "5bb567c2bcadfe0f62c15015";
         string url = $"https://api.trello.com/1/lists/{listId}/cards?key={trelloOptions.Value.ApiKey}&token={trelloOptions.Value.Token}";
         var response = await url.GetAsync();
+        Console.WriteLine("HUHasdasdf");
+        var item12s = await response.GetStringAsync();
+        Console.WriteLine("HUH", item12s);
         var items = await response.GetJsonAsync<GetMealsResponseItem[]>();
         var newItems = items
             .Where(x => x != null && x.Name.Split(":").Length == 2)
@@ -32,6 +35,7 @@ public class GetMealsRequestHandler : IWolverineHandler
 
     private static DayOfWeek GetDateOfWeek(string text)
     {
+        Console.WriteLine(text);
 
         text = text.ToLower().Trim();
         return text switch

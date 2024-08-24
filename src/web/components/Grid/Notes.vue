@@ -1,5 +1,5 @@
 <template>
-    <DashGrid @refreshed-click="store.refresh">
+    <DashGrid @refreshed-click="refresh">
         <div v-if="pending"><GridPending /></div>
         <div v-else-if="error">{{ error }}</div>
         <div v-else>
@@ -7,15 +7,20 @@
                 <h2 class="mb-6 text-4xl font-bold text-my-aqua">
                     Think About...
                 </h2>
-                <p>{{ note.text }}</p>
+                <p>{{ data.name }}</p>
             </ClientOnly>
         </div>
     </DashGrid>
 </template>
 
 <script lang="ts" setup>
-const store = useNotesStore()
-const { note, error, pending } = storeToRefs(store)
+import { format, parseISO } from 'date-fns'
+const config = useRuntimeConfig()
+const { data, pending, error, refresh } = await useLazyFetch(`trello/think`, {
+    baseURL: config.public.baseUrl,
+})
 
-await store.refresh()
+onMounted(() => {
+    setInterval(refresh, Milliseconds.FromMinutes(15))
+})
 </script>

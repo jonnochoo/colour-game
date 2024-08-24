@@ -4,7 +4,7 @@
             <div>
                 <span v-if="data?.type == 'Yellow Bin'">🟡</span>
                 <span v-else="">🟢</span>
-                This week is {{ data.type }}
+                This week is {{ data?.type }}
             </div>
         </div>
     </ClientOnly>

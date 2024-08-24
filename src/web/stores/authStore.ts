@@ -1,9 +1,17 @@
+import { useLocalStorage } from '@vueuse/core'
+import { addSeconds } from 'date-fns'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 const config = useRuntimeConfig()
 
 export type User = { username: string; password: string }
+export type UserToken = {
+    token: string
+    expiryDate: Date | null
+}
+const UnauthenticatedToken: UserToken = { token: '', expiryDate: null }
+
 export type LoginResponse = {
     tokenType: string
     accessToken: string
@@ -16,8 +24,8 @@ export const EmptyUser: User = {
 }
 export const useAuthStore = defineStore('auth', () => {
     // State
-    const user = ref<null | User>(null)
-    const token = ref<null | string>(null)
+    const user = ref<null | User>()
+    const token = useLocalStorage('token', UnauthenticatedToken)
 
     // Actions
     async function login(userData: User) {
@@ -32,10 +40,13 @@ export const useAuthStore = defineStore('auth', () => {
                     password: userData.password,
                 },
             })
-            token.value = response.accessToken
+            token.value = {
+                token: response.accessToken,
+                expiryDate: addSeconds(new Date(), response.expiresIn),
+            }
             user.value = userData
-            console.log('success', token.value)
-            // Save in local storage
+            console.log('success', response)
+
             // Update
         } catch (e) {
             console.log('error: ', e)
@@ -44,11 +55,12 @@ export const useAuthStore = defineStore('auth', () => {
 
     function logout() {
         user.value = null
-        token.value = null
+        token.value = UnauthenticatedToken
+        useLocalStorage<string>('token', null)
     }
 
     // Getters
-    const isAuthenticated = computed(() => !!user.value)
+    const isAuthenticated = computed(() => token.value.token != '')
 
     return { user, token, login, logout, isAuthenticated }
 })

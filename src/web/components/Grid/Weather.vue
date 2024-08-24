@@ -41,13 +41,13 @@
                         {{ data.temperatureCurrent.toFixed(1) }}°
                     </span>
                     <div class="text-2xl flex-grow text-right">                        
-                        <p>Min: {{ Math.round(data.temperatureMin) }}°
-                        Max: {{ Math.round(data.temperatureMax) }}°</p>
+                        <p>Min: {{ Math.round(data.today.temperatureMin) }}°
+                        Max: {{ Math.round(data.today.temperatureMax) }}°</p>
                         <div>
-                        Sunrise:  {{ format(parseISO(data.sunriseTime), 'h:mm a') }}
+                        Sunrise:  {{ format(parseISO(data.today.sunriseTime), 'h:mm a') }}
                         </div>
                         <div>
-                        Sunset:   {{ format(parseISO(data.sunsetTime), 'h:mm a') }}
+                        Sunset:   {{ format(parseISO(data.today.sunsetTime), 'h:mm a') }}
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         Humidity: {{ data.humidityCurrent }}%
                     </div>
                     <div class="text-[#4dceb0]">
-                        Rain: {{ data.precipitationProbabilityAvg }}%
+                        Rain: {{ data.today.precipitationProbabilityAvg }}%
                     </div>
                     <div class="text-[#fceb3c]">
                         UV: {{ data.uvIndexConcern }}
@@ -65,6 +65,10 @@
                     <div class="text-blue-500">
                         Wind:
                         {{ data.windspeedCurrent }}
+                    </div>
+                    <div class="text-purple-500">
+                        Tom:
+                        {{ data.tomorrow.temperatureMin.toFixed(0) }}°- {{ data.tomorrow.temperatureMax.toFixed(0) }}°
                     </div>
 
                 </div>
