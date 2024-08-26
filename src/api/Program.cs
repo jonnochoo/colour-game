@@ -84,6 +84,7 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();
+app.UseOutputCache();
 app.UseAuthorization();
 var cookiePolicyOptions = new CookiePolicyOptions
 {
@@ -101,12 +102,19 @@ app.MapGet("/db", async (IMessageBus bus) => await bus.InvokeAsync(new Bootstrap
 // Dashboard
 app.MapGet("/bible", async (IMessageBus bus) => await bus.InvokeAsync<Passage>(new GetBibleVerseOfTheDayRequest()))
     .CacheOutput();
-app.MapGet("/google-calendar", async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest())).CacheOutput();
-app.MapGet("/trello/abigail", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()));
-app.MapGet("/trello/elijah", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()));
-app.MapGet("/trello/think", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForThink()));
-app.MapGet("/trello/todos", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<GetTodoListResponseItem[]>(new GetTodoListRequest()));
-app.MapGet("/trello/meals", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<GetMealsResponseItem[]>(new GetMealsRequest()));
+app.MapGet("/google-calendar", [OutputCache] async (IMessageBus bus) => await bus.InvokeAsync<EventDto[]>(new GetGoogleCalendarRequest()))
+
+    .CacheOutput();
+app.MapGet("/trello/abigail", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForAbigail()))
+    .CacheOutput();
+app.MapGet("/trello/elijah", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForElijah()))
+    .CacheOutput();
+app.MapGet("/trello/think", async (IMessageBus bus) => await bus.InvokeAsync<object>(GetTrelloCardRequest.ForThink()))
+    .CacheOutput();
+app.MapGet("/trello/todos", async (IMessageBus bus) => await bus.InvokeAsync<GetTodoListResponseItem[]>(new GetTodoListRequest()))
+    .CacheOutput();
+app.MapGet("/trello/meals", async (IMessageBus bus) => await bus.InvokeAsync<GetMealsResponseItem[]>(new GetMealsRequest()))
+    .CacheOutput();
 app.MapGet("/weather", [OutputCache(PolicyName = CachePolicyName.FiveMinutes)] async (IMessageBus bus) => await bus.InvokeAsync<object>(GetWeatherRequest.BaulkhamHills()));
 
 app.MapGet("/msg", async (IMessageBus bus) => await bus.InvokeAsync(new SendNtfyCommand { Message = "hello", Topic = "jctest1" }));
@@ -119,6 +127,6 @@ app.MapGet("/chore/elijah", async (DayOfWeek? dayOfWeek, IMessageBus bus) => awa
 //  Hub
 app.MapHub<DashboardHub>("/hubs/dashboard");
 
-app.UseOutputCache();
+
 
 return await app.RunOaktonCommands(args);
