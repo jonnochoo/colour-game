@@ -30,18 +30,21 @@ export default defineEventHandler(async (event) => {
                     'ic:twotone-electric-bolt'
                 ),
                 // Morning
-                createDailyMorningChores('Get changed out of PJs'),
-                createDailyMorningChores('Eat breakfast'),
-                createDailyMorningChores('Put breakfast dishes away'),
-                createDailyMorningChores('Brush teeth'),
-                createDailyMorningChores('Fix up hair'),
-                createDailyMorningChores('Sunscreen'),
-                createDailyMorningChores('Find hat, jacket, socks & shoes'),
+                createDailyMorningChores('👘Get changed out of PJs'),
+                createDailyMorningChores('🥣Eat breakfast'),
+                createDailyMorningChores('🧼Put breakfast dishes away'),
+                createDailyMorningChores('🪥Brush teeth'),
+                createDailyMorningChores('🪮Fix up hair'),
+                createDailyMorningChores('☀️Sunscreen'),
+                createDailyMorningChores('🔍Find hat, jacket, socks & shoes'),
                 createDailyMorningChores('Pack Hills library bag'),
 
                 createMorningWeekDayChore('Pack school bag'),
 
-                createMorningWeekly('Reminder about dance class', ['Monday']),
+                createMorningWeekly('🩰Reminder about dance class', [
+                    'Monday',
+                    'Tuesday',
+                ]),
                 createMorningWeekly('Wear sports clothes', [
                     'Monday',
                     'Wednesday',
