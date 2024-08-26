@@ -25,9 +25,9 @@
             <GridCalendar />
             <GridGoals />
             <GridCountdown
-                title="Nai Nai and Ye Ye Return"
+                title="Family Holiday (29th Sept)"
                 color="text-blue-400"
-                :countdownDate="new Date('2024-08-27')"
+                :countdownDate="new Date('2024-09-29')"
             />
             <GridCountdown
                 title="Countdown until Dance Recital"
