@@ -20,7 +20,7 @@
                             .slice(0, 8)"
                     >
                         <span
-                            class="w-[270px] border-r-4"
+                            class="w-[280px] border-r-4"
                             :class="{
                                 'border-pink-500': $event.isWeekend,
                                 'border-purple-500': !$event.isWeekend,
