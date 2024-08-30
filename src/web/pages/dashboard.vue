@@ -25,7 +25,7 @@
             <GridCalendar />
             <GridGoals />
             <GridCountdown
-                title="Family Holiday (29th Sept)"
+                title="Family Holiday (Sun, 29th Sept)"
                 color="text-blue-400"
                 :countdownDate="new Date('2024-09-29')"
             />
