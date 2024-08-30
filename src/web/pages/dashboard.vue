@@ -30,7 +30,7 @@
                 :countdownDate="new Date('2024-09-29')"
             />
             <GridCountdown
-                title="Dance Recital (Thu, 29th Aug)"
+                title="Abi Zoo Excursion (Tue, 10th Aug)"
                 color="text-violet-400"
                 :countdownDate="new Date('2024-08-29')"
             />
