@@ -130,3 +130,7 @@ app.MapHub<DashboardHub>("/hubs/dashboard");
 
 
 return await app.RunOaktonCommands(args);
+
+// TODO
+// Motion Detection: https://medium.com/hackernoon/motion-detection-in-javascript-2614adea9325
+// Cal from defineExpose: https://stackoverflow.com/questions/33682651/call-a-vue-js-component-method-from-outside-the-component#72348802
