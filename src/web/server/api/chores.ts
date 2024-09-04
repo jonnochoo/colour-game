@@ -36,6 +36,7 @@ export default defineEventHandler(async (event) => {
                 createDailyMorningChores('🪥Brush teeth'),
                 createDailyMorningChores('🪮Fix up hair'),
                 createDailyMorningChores('☀️Sunscreen'),
+                createDailyMorningChores('Put on watch'),
                 createDailyMorningChores('🔍Find hat, jacket, socks & shoes'),
                 createMorningWeekly('Pack swimming bag', ['Friday', 'Tuesday']),
 
@@ -91,6 +92,7 @@ export default defineEventHandler(async (event) => {
                 createDailyMorningChores('Put breakfast dishes away'),
                 createDailyMorningChores('Brush teeth'),
                 createDailyMorningChores('Sunscreen'),
+                createDailyMorningChores('Put on watch'),
                 createDailyMorningChores('Find hat, jacket, socks & shoes'),
 
                 createMorningWeekDayChore('Pack school bag'),

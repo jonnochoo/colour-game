@@ -25,12 +25,12 @@
             <GridCalendar />
             <GridGoals />
             <GridCountdown
-                title="Family Holiday (Sun, 29th Sept)"
+                title="Cricket Season Starts (Sat, 21st Sept)"
                 color="text-blue-400"
-                :countdownDate="new Date('2024-09-29')"
+                :countdownDate="new Date('2024-09-21')"
             />
             <GridCountdown
-                title="Abi Zoo Excursion (Tue, 10th Aug)"
+                title="Abi Zoo Excursion (Tue, 10th Sept)"
                 color="text-violet-400"
                 :countdownDate="new Date('2024-09-10')"
             />
