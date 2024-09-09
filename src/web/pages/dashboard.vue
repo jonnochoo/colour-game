@@ -20,7 +20,7 @@
             <GridBible />
             <GridClock />
             <GridWeather />
-            <GridNotes />
+            <GridCountry />
             <GridMeals />
             <GridCalendar />
             <GridGoals />
@@ -34,7 +34,11 @@
                 color="text-violet-400"
                 :countdownDate="new Date('2024-09-17')"
             />
-            <GridCountry />
+            <GridCountdown
+                title="Nai Nai Birthday"
+                color="text-violet-400"
+                :countdownDate="new Date('2024-09-20')"
+            />
         </div>
     </div>
 
