@@ -12,7 +12,7 @@
                             ?.filter(
                                 (x) =>
                                     x.summary !== 'SCHOOL HOLIDAYS' &&
-                                    x.summary !== 'No M&D' &&
+                                    x.summary !== 'M&D away' &&
                                     x.summary !== 'take off this day!' &&
                                     x.summary !== 'Grocery shopping' &&
                                     x.summary !== 'Baz Birthday'
