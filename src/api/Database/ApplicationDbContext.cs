@@ -37,24 +37,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
             .Property(x => x.Summary)
             .IsRequired();
 
-        // Elijah
-        builder.Entity<ChoreTemplate>()
-            .HasData(new ChoreTemplate
-            {
-                PersonId = PersonIds.Elijah,
-                Summary = "Brush Teeth",
-                DaysOfWeek = DayOfWeeks.AllDays,
-                TimeOfDays = [TimeOfDay.Morning, TimeOfDay.Evening]
-            });
-        builder.Entity<ChoreTemplate>()
-            .HasData(new ChoreTemplate
-            {
-                PersonId = PersonIds.Elijah,
-                Summary = "Get changed out of PJs",
-                DaysOfWeek = DayOfWeeks.AllDays,
-                TimeOfDays = [TimeOfDay.Morning]
-            });
-
         this.AddRegularChores(builder, PersonIds.Elijah);
         this.AddRegularChores(builder, PersonIds.Abigail);
     }
