@@ -30,14 +30,14 @@
                 :countdownDate="new Date('2024-10-18')"
             />
             <GridCountdown
-                title="School Holidays"
+                title="Family Holidays"
                 color="text-violet-400"
-                :countdownDate="new Date('2024-09-30')"
+                :countdownDate="new Date('2024-09-29')"
             />
             <GridCountdown
-                title="Nai Nai Birthday"
+                title="Church Camp"
                 color="text-green-400"
-                :countdownDate="new Date('2024-09-20')"
+                :countdownDate="new Date('2024-10-04')"
             />
         </div>
     </div>
