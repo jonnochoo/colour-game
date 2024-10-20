@@ -42,15 +42,12 @@ export default defineEventHandler(async (event) => {
 
                 createMorningWeekDayChore('Pack school bag'),
 
-                createMorningWeekly('🩰Reminder about dance class', [
-                    'Monday',
-                    'Tuesday',
-                ]),
+                createMorningWeekly('🩰Reminder about dance class', []),
                 createMorningWeekly('Wear sports clothes', [
                     'Monday',
                     'Wednesday',
                 ]),
-                createMorningWeekly('Pack library bag', ['Tuesday']),
+                createMorningWeekly('Pack library bag', ['Monday']),
                 createMorningWeekly('Pack gymanstics bag', ['Friday']),
 
                 // Afternoon
