@@ -25,19 +25,19 @@
             <GridCalendar />
             <GridGoals />
             <GridCountdown
-                title="Colour Run"
+                title="PSSA Semi"
                 color="text-green-400"
-                :countdownDate="new Date('2024-10-23')"
-            />
-            <GridCountdown
-                title="Choo Family Dinner"
-                color="text-orange-400"
-                :countdownDate="new Date('2024-10-27')"
+                :countdownDate="new Date('2024-11-15')"
             />
             <GridCountdown
                 title="Nat Baby Shower"
                 color="text-violet-400"
                 :countdownDate="new Date('2024-11-16')"
+            />
+            <GridCountdown
+                title="Newcastle"
+                color="text-orange-400"
+                :countdownDate="new Date('2024-11-23')"
             />
         </div>
     </div>

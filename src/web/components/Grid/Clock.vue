@@ -1,7 +1,7 @@
 <template>
     <DashGrid>
         <ClientOnly>
-            <p class="mb-4 text-center font-[lexend] lg:text-8xl">
+            <p class="mb-4 text-center lg:text-8xl">
                 {{ currentTime }}
             </p>
             <p class="text-center lg:text-5xl">{{ currentDate }}</p>
