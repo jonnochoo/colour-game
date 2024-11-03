@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         googleCalendarServiceAccountEmail: '',
         googleCalendarPrivateKey: '',
         public: {
-            baseUrl: 'http://jonno-pi.tail88a240.ts.net:5000/',
+            baseUrl: 'https://jonno-pi.tail88a240.ts.net/',
         },
     },
 })
