@@ -25,9 +25,9 @@
             <GridCalendar />
             <GridGoals />
             <GridCountdown
-                title="PSSA Semi"
+                title="Toongabbie Interview"
                 color="text-green-400"
-                :countdownDate="new Date('2024-11-15')"
+                :countdownDate="new Date('2024-11-26')"
             />
             <GridCountdown
                 title="Nat Baby Shower"
