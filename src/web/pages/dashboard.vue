@@ -24,20 +24,21 @@
             <GridMeals />
             <GridCalendar />
             <GridGoals />
+
+            <GridCountdown
+                title="Newcastle"
+                color="text-orange-400"
+                :countdownDate="new Date('2024-11-23')"
+            />
             <GridCountdown
                 title="Toongabbie Interview"
                 color="text-green-400"
                 :countdownDate="new Date('2024-11-26')"
             />
             <GridCountdown
-                title="Nat Baby Shower"
+                title="Christmas"
                 color="text-violet-400"
-                :countdownDate="new Date('2024-11-16')"
-            />
-            <GridCountdown
-                title="Newcastle"
-                color="text-orange-400"
-                :countdownDate="new Date('2024-11-23')"
+                :countdownDate="new Date('2024-12-25')"
             />
         </div>
     </div>
