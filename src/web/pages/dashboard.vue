@@ -26,14 +26,14 @@
             <GridGoals />
 
             <GridCountdown
-                title="Newcastle"
-                color="text-orange-400"
-                :countdownDate="new Date('2024-11-23')"
+                title="Jo Market"
+                color="text-green-400"
+                :countdownDate="new Date('2024-11-28')"
             />
             <GridCountdown
-                title="Toongabbie Interview"
-                color="text-green-400"
-                :countdownDate="new Date('2024-11-26')"
+                title="BBL Game"
+                color="text-orange-400"
+                :countdownDate="new Date('2024-12-21')"
             />
             <GridCountdown
                 title="Christmas"
