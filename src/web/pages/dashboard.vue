@@ -25,21 +25,9 @@
             <GridCalendar />
             <GridGoals />
 
-            <GridCountdown
-                title="Jo Market"
-                color="text-green-400"
-                :countdownDate="new Date('2024-11-28')"
-            />
-            <GridCountdown
-                title="BBL Game"
-                color="text-orange-400"
-                :countdownDate="new Date('2024-12-21')"
-            />
-            <GridCountdown
-                title="Christmas"
-                color="text-violet-400"
-                :countdownDate="new Date('2024-12-25')"
-            />
+            <GridCountdown number="1" color="text-green-400" />
+            <GridCountdown number="2" color="text-orange-400" />
+            <GridCountdown number="3" color="text-violet-400" />
         </div>
     </div>
 
